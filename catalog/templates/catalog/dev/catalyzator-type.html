@@ -1,0 +1,102 @@
+{% extends "core/base-newdesign.html" %}
+{% load staticfiles %}
+{% block Meta %}
+        <title>{{ cat_type.seotitle }}</title>
+        <meta name="keywords" content="{{ cat_type.seokeywords }}"/>
+        <meta name="description" content="{{ cat_type.seodescript }}"/>
+{% endblock %}
+
+{% block OpenGraph %}
+    <meta property="og:title" content="{{ cat_type.seotitle }}"/>
+	<meta property="og:description" content="{{ cat_type.seodescript }}"/>
+	<meta property="og:image" content="https://vekokat.ru{{ open_gr_img.img.url }}"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:url" content= "https://vekokat.ru/catalizators/{{ cat_type.slug }}" />
+{% endblock %}
+
+{% block LinkAmp %}
+     <link rel="amphtml" href="https://vekokat.ru/amp/catalizators/{{ cat_type.slug }}">
+{% endblock %}
+{% block Content %}
+    <!-- CATALOG-TYPE-PAGE -->
+
+    <div class="content-container catalyzator-type" itemscope itemtype="http://schema.org/ItemPage">
+        <div class="cat-type-gallery">
+            {% for img in imgs %}
+                <div class="cat-type-gal-item" style="background: url({{ img.img.url }}); background-size: cover;">
+                </div>
+            {% endfor %}
+        </div>
+    <div itemprop="mainEntity" itemscope itemtype="http://schema.org/Article">
+    <meta itemprop="author" content="Владимир З.">
+    <meta itemprop="datePublished" datetime="2020-04-01" content="2020-04-01">
+    <meta itemprop="dateModified" datetime="{{ cat_type.updated_at|date:"Y-m-d" }}" content="{{ cat_type.updated_at|date:"Y-m-d" }}">
+        <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+        <meta itemprop="name" content="ВЕКОкат">
+        <meta itemprop="url" content="https://vekokat.ru/">
+        <span itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+            <meta itemprop="url image" content="{% static 'core/images/newdesign/vekokat-new-logo-100.png' %}">
+            <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                <meta itemprop="addressLocality" content="МО, Электросталь">
+                <meta itemprop="streetAddress" content="ул. Пионерская д.22">
+           </span>
+        </span>
+        <meta itemprop="telephone" content="+7(925)553-35-52">
+        <meta itemprop="telephone" content="+7(926)866-86-89">
+        <meta itemprop="email" content="vekokat@gmail.com">
+        </span>
+    <div class="catalyzator-type-title">
+        {% for img in imgs %}
+            <meta itemprop="image" content="https://vekokat.ru{{ img.img.url }}">
+        {% endfor %}
+        <h1 itemprop="headline name">{{ cat_type.title }}</h1>
+    </div>
+
+    <div itemprop="articleBody" class="catalyzator-type-text">
+        {{ cat_type.text|safe }}
+    </div>
+    </div>
+    </div>
+    <!-- PRICES BLOCK -->
+    {% if debug_flag %}
+        {% include 'core/dev/prices-block.html' %}
+    {% else %}
+        {% include 'core/prod/prices-block.html' %}
+    {% endif %}
+
+
+    <!-- MAIN FORM BLOCK -->
+        <div class="mainform-title catol-title" id="form-container">
+            <h2>Узнайте приблизительную стоимость вашего катализатора, заполнив форму</h2>
+        </div>
+        <div class="content-container catalizator-type-form">
+            {% if debug_flag %}
+            {% include 'forms/dev/main-form.html' %}
+            {% else %}
+            {% include 'forms/prod/main-form.html' %}
+            {% endif %}
+        </div>
+{% endblock %}
+{% block ExtraJS %}
+    <script>
+    function openCat(id){
+        var modal = document.getElementById("catalog-"+id);
+        var showCatalog = document.getElementById("show-catalog-"+id);
+        var closeCatalog = document.getElementById("close-catalog-"+id);
+        showCatalog.style.display = "none";
+        closeCatalog.style.display = "flex";
+        modal.style.display = "flex";
+        modal.style.opacity = "1";
+        modal.scrollIntoView();
+    }
+    function closeCat(id){
+        var modal = document.getElementById("catalog-"+id);
+        var showCatalog = document.getElementById("show-catalog-"+id);
+        var closeCatalog = document.getElementById("close-catalog-"+id);
+        showCatalog.style.display = "flex";
+        closeCatalog.style.display = "none";
+        modal.style.display = "none";
+        modal.style.opacity = "0";
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% load staticfiles %}
+<div class="working-methods-title catol-title" id="working-methods-block">
+          <h2>ПОРЯДОК РАБОТ ПРИ ПРИЕМЕ КАТАЛИЗАТОРОВ</h2>
+      </div>
+      <div class="content-container">
+         <div class="after-title-text">
+             {% for text in met_text %}
+             {{ text.text|safe }}
+             {% endfor %}
+         </div>
+         <div class="working-methods-list-container">
+             {% for method in methods %}
+             <div class="working-methods-item" style="background: url({{ method.image.url }}); background-size: cover;">
+                 <div class="working-methods-item-text-container" >
+                       <div class="working-methods-item-number">{{ method.number }}</div>
+                       <div class="working-methods-item-text">{{ method.text }}</div>
+                 </div>
+             </div>
+             {% endfor %}
+         </div>
+      </div>

@@ -1,0 +1,27 @@
+/* CITIES-PAGE */
+.city-gallery-item img {
+    width: 100%;
+    height: auto;
+}
+.cities-form {
+    padding-bottom: 40px;
+}
+
+@media (min-width: 576px) {
+
+    /* CITIES-PAGE */
+
+}
+
+@media (min-width: 768px) {
+
+    /* CITIES-PAGE */
+
+}
+
+@media (min-width: 992px) {
+
+    /* CITIES-PAGE */
+
+}
+

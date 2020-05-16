@@ -1,0 +1,59 @@
+{% extends "core/base-newdesign.html" %}
+{% load staticfiles %}
+{% block Meta %}
+    {% for cat in category %}
+        <title>{{ cat.alt_seotitle }}</title>
+        {% if cat.alt_seokeywords %}
+        <meta name="keywords" content="{{ cat.alt_seokeywords }}"/>
+        {% endif %}
+        <meta name="description" content="{{ cat.alt_seodescript }}"/>
+    {% endfor %}
+{% endblock %}
+{% block OpenGraph %}
+    {% for cat in category %}
+    <meta property="og:title" content="{{ cat.alt_seotitle }}"/>
+	<meta property="og:description" content="{{ cat.alt_seodescript }}"/>
+    {% endfor %}
+	<meta property="og:image" content="{% static 'core/images/newdesign/import-catols.jpg' %}"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:url" content= "https://vekokat.ru/catalog/importnye/" />
+{% endblock %}
+{% block LinkAmp %}
+     <link rel="amphtml" href="https://vekokat.ru/amp/catalog/importnye/">
+{% endblock %}
+
+<!-- CATALOG-TYPE-PAGE -->
+
+{% block Content %}
+    <div class="cat-type-banner-wr" style="background: url({% static 'core/images/newdesign/catal-catalog-banner.jpg' %}); background-size: cover;">
+    </div>
+    <div class="catol-title">
+          <h2>ИМПОРТНЫЕ КАТАЛИЗАТОРЫ</h2>
+    </div>
+    <div class="content-container">
+        <div class="cat-type-text-wr">
+            {% for item in category %}
+                {{ item.alt_text|safe }}
+            {% endfor %}
+        </div>
+        <div class="cat-type-items-container">
+            {% for model in auto_models  %}
+                <a href="/catalog/importnye/{{ model.slug }}"><div class="cat-type-item-wr">
+                    <div class="type-item-img-wr" style="background: url({{ model.image.url }}); background-size: cover;">
+                        <div class="type-item-model">{{ model.auto_model }}</div>
+                        <div class="type-item-year">{{ model.year }}</div>
+                    </div>
+                    <div class="type-item-weight"><span class="cat-type-text-style">ВЕС:&nbsp;</span>{{ model.weight }}гр.</div>
+                    <div class="type-item-price"><span class="cat-type-text-style">ЦЕНА ЗА КГ:&nbsp;</span>{{ model.price_kg}}руб</div>
+                    <div class="type-item-sum"><span class="cat-type-text-style">СУММА:&nbsp;</span>{{ model.sum}}руб</div>
+                </div></a>
+            {% endfor%}
+        </div>
+        {% if debug_flag %}
+            {% include 'forms/dev/main-form.html' %}
+        {% else %}
+            {% include 'forms/prod/main-form.html' %}
+        {% endif %}
+    </div>
+
+{% endblock %}

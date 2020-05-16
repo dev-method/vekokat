@@ -1,0 +1,40 @@
+{
+  "name": "ООО \"ВеКо\" - покупка авто и промышленных католизаторов",
+  "short_name": "vekokat",
+  "lang": "ru",
+  "start_url": "/",
+  "display": "fullscreen",
+  "orientation": "any",
+  "theme_color": "#333333",
+  "icons": [
+    {
+      "src": "/static/core/pwa/new_icons/icon192x192.png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/static/core/pwa/new_icons/icon512x512.png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "/static/core/pwa/new_icons/icon180x180.png",
+      "sizes": "180x180"
+    },
+    {
+      "src": "/static/core/pwa/new_icons/icon70x70.png",
+      "sizes": "70x70"
+    },
+    {
+      "src": "/static/core/pwa/new_icons/icon150x150.png",
+      "sizes": "150x150"
+    },
+    {
+      "src": "/static/core/pwa/new_icons/icon310x150.png",
+      "sizes": "310x150"
+    },
+    {
+      "src": "/static/core/pwa/new_icons/icon310x310.png",
+      "sizes": "310x310"
+    }
+  ],
+  "background_color": "#333333"
+}

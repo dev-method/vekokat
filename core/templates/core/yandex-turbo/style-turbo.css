@@ -1,0 +1,74 @@
+/* Выделение цветом шапки страницы */
+/*
+.cover {
+  background: #BBD8E4;
+  padding-bottom: 32px;
+}
+*/
+
+/* Заголовок страницы по центру */
+/*
+.cover .title {
+  text-align: center;
+}
+
+.cover .subtitle {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.cover .image {
+  margin-top: 24px;
+  border-radius: 4px;
+}
+*/
+
+/* Цвет ссылок */
+/*
+.link {
+  color: #307896;
+}
+*/
+
+/* Цвет иконки Турбо-страницы в шапке */
+/*
+.page .header-turbo-icon {
+  fill: rgba(0, 0, 0, 0.6);
+}
+*/
+
+/* Шрифт заголовка */
+/*
+.title_level_2 {
+  font-weight: 100;
+}
+*/
+.title_size_m {
+    text-align:center;
+    }
+  .cover {
+    background-color: #356281;
+  }
+  .cover .divider + .title {
+    padding-bottom: 16px;
+  }
+  .title_size_s {
+    text-align:center;  
+    }
+
+  .title_size_xs {
+    text-align:center;
+    
+  }
+  .title_size_xxs {
+    text-align:center;
+}
+  .unit_text_l + .unit_text_l {
+      margin-top: 10px;
+  }
+  .title_size_l {
+    text-align:center;
+  }
+.page {
+   font-weight: 600;
+}

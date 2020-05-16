@@ -1,0 +1,175 @@
+<!doctype html>
+<html amp lang="ru">
+  <head>
+    {% load static %}
+    <link href="{% static 'core/images/favicon.ico' %}" rel="shortcut icon" type="image/x-icon" />
+    <meta charset="utf-8">
+    {% block Meta %}
+        {% for s in seo %}
+        <title>{{ s.title }}</title>
+        <meta name="Keywords" content="{{ s.keywords }}"/>
+        <meta name="Description" content="{{s.description}}"/>
+        {% endfor %}
+    {% endblock %}
+    {% block AMP-Cannonical-Link %}
+    {% endblock %}
+    {% block AMP-Index %}
+    {% endblock %}
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:500">
+    {% block AMP-CSS-Link %}
+    {% endblock %}
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+    <script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
+    {% block AMP-Scripts %}
+    {% endblock %}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    {% block AMP-CSS %}
+        <style amp-custom>
+        .laboratory-mapimage-container {
+           background: url({% static "core/images/newdesign/map-transp-770x1270.png"%}) no-repeat center;
+           background-size: contain;
+        }
+        .regions-map-image {
+           background: url({% static "core/images/newdesign/map-color-770x1300.png"%}) no-repeat center;
+           background-size: contain;
+        }
+        @media (max-width: 420px) {
+        .working-methods-item-text {
+            font-size: 0.8em;
+        }
+        }
+        @media (min-width: 576px) {
+        .laboratory-mapimage-container {
+           background: url({% static "core/images/newdesign/map-transp-770x1270.png"%}) no-repeat center;
+           background-size: contain;
+        }
+        .regions-map-image {
+           background: url({% static "core/images/newdesign/map-color-770x1300.png"%}) no-repeat;
+           background-size: contain;
+        }
+        }
+        @media (min-width: 768px) {
+            .laboratory-mapimage-container {
+
+                background: url({% static "core/images/newdesign/map-transp-1600x700.png"%}) no-repeat center;
+
+                background-size: contain;
+
+            }
+            .regions-map-image {
+                background: url({% static "core/images/newdesign/map-color-1600x600.png"%}) no-repeat center;
+                background-size: contain;
+            }
+
+            }
+            @media (min-width: 992px) {
+            .laboratory-mapimage-container {
+                background: url({% static "core/images/newdesign/map-transp-1600x700.png"%}) no-repeat center;
+                background-size: contain;
+            }
+            .regions-map-image {
+                background: url({% static "core/images/newdesign/map-color-1600x600.png"%}) no-repeat center;
+                background-size: contain;
+            }
+            }
+            @media (min-width: 1070px) {
+            .working-methods-item {
+                width: 24%;
+                height: 375px;
+            }
+            .working-methods-item-text {
+                font-size: 1em;
+            }
+            }
+            {% include 'core/amp/amp-style/base-amp-style.css' %}
+            {% include 'core/amp/amp-style/576-amp-style.css' %}
+            {% include 'core/amp/amp-style/768-amp-style.css' %}
+            {% include 'core/amp/amp-style/992-amp-style.css' %}
+            @media (min-width: 1280px) {
+
+            .working-methods-item {
+                width: 24%;
+                height: 475px;
+            }
+            .working-methods-item-text {
+                font-size: 1em;
+    }
+            .prices-item-midle {
+                min-height: 365px;
+            }
+            }
+        </style>
+    {% endblock %}
+  </head>
+  <body>
+  {% block MobileMenu %}
+  <amp-sidebar id="sidebar" layout="nodisplay" side="left" style="width:100%">
+            <ul>
+                <li><amp-accordion disable-session-states>
+                    <section>
+                        <h4>ГЛАВНАЯ&nbsp;&nbsp;<i class="fas fa-plus-circle"></i></h4>
+                        <ul>
+                            <li><a href="/amp/#working-methods-block/" on="tap:working-methods-block.scrollTo">ПОРЯДОК РАБОТ</a></li>
+                            <li><a href="/amp/#laboratory-block/" on="tap:laboratory-block.scrollTo">МОБИЛЬНАЯ ЛАБОРАТОРИЯ</a></li>
+                            <li><a href="/amp/#regions-block/" on="tap:regions-block.scrollTo">РЕГИОНЫ</a></li>
+                            <li><a href="/amp/#prices-block/" on="tap:prices-block.scrollTo">ЦЕНЫ</a></li>
+                            <li><a href="/amp/#advantages-block/" on="tap:advantages-block.scrollTo">ПРЕИМУЩЕСТВА</a></li>
+                            <li><a href="/amp/#partners-block/" on="tap:partners-block.scrollTo">НАШИ ПАРТНЕРЫ</a></li>
+                            <li><a href="/amp/#form-container/" on="tap:form-container.scrollTo">ОСТАВИТЬ СООБЩЕНИЕ</a></li>
+                            <li><a href="/amp/#about-block/" on="tap:about-block.scrollTo">О НАС</a></li>
+                            <li><a href="/amp/#map-container/" on="tap:map-container.scrollTo">МЫ НА КАРТЕ</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h4>ПРИЕМ КАТАЛИЗАТОРОВ&nbsp;&nbsp;<i class="fas fa-plus-circle"></i></h4>
+                        <ul>
+                            <li><a href="/amp/catalizators/otechestvennye-katalizatory/">ОТЕЧЕСТВЕННЫЕ КАТАЛИЗАТОРЫ</a></li>
+                            <li><a href="/amp/catalizators/importnye-katalizatory/">ИМПОРТНЫЕ КАТАЛИЗАТОРЫ</a></li>
+                            <li><a href="/amp/catalizators/otechestvennye-metallicheskie-katalizatory/">ОТЕЧЕСТВЕННЫЕ МЕТАЛЛИЧЕСКИЕ КАТАЛИЗАТОРЫ</a></li>
+                            <li><a href="/amp/catalizators/importnye-metallicheskie-katalizatory/">ИМПОРТНЫЕ МЕТАЛЛИЧЕСКИЕ КАТАЛИЗАТОРЫ</a></li>
+                            <li><a href="/amp/catalizators/sazhevye-filtry/">САЖЕВЫЕ ФИЛЬТРЫ</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h4>КАТАЛОГ&nbsp;&nbsp;<i class="fas fa-plus-circle"></i></h4>
+                        <ul>
+                            <li><a href="/amp/catalog/otechestvennyj/">ОТЕЧЕСТВЕННЫЕ КАТАЛИЗАТОРЫ</a></li>
+                            <li><a href="/amp/catalog/importnye/">ИМПОРТНЫЕ КАТАЛИЗАТОРЫ</a></li>
+                        </ul>
+                    </section>
+
+                    </amp-accordion>
+                </li>
+                <li><a href="/amp/conditions/">УСЛОВИЯ ПРИЕМА</a></li>
+                <li><a href="/amp/#working-methods-block/">ПОРЯДОК РАБОТ</a></li>
+                <li><a href="/amp/#prices-block/">ЦЕНЫ</a></li>
+                <li><a href="/amp/contacts/">КОНТАКТЫ</a></li>
+                <li><a href="/amp/amp/#partners-block/">ПАРТНЕРЫ</a></li>
+            </ul>
+  </amp-sidebar>
+  
+
+       <div class="mobile-menu-container">
+       <div role="button" tabindex="0" on="tap:sidebar.toggle" class="mobile-menu-icon-wr" >
+           <i id="burger-icon" class="fas fa-align-justify"></i>
+       </div>
+       <div role="button" tabindex="0" on="tap:modal-form.toggleVisibility" class="mobile-menu-text-wr" id="modal-button"  >
+           ЗАКАЗАТЬ ЗВОНОК
+       </div>
+       <div class="mobile-menu-icons-container">
+           <a href="/amp/#map-container"><i class="fas fa-map-marked-alt"></i></a>
+           <a href="/amp/#form-container"><i class="fas fa-envelope-open-text"></i></a>
+       </div>
+       </div>
+{% endblock %}
+
+  {% include 'core/amp/new-header-amp.html' %}
+    {% block AMP-Content %}
+    {% endblock %}
+    {% include 'core/amp/amp-modal.html' %}
+    {% include 'core/amp/new-footer-amp.html' %}
+  </body>
+</html>

@@ -1,0 +1,40 @@
+{% extends "core/yandex-turbo/new-base-turbo.rss" %}
+{% load static %}
+        {% block Meta %}
+        {% for cat in category %}
+        <title>{{ cat.alt_seotitle }}</title>
+        <meta name="keywords" content="{{ cat.alt_seokeywords }}"/>
+        <meta name="description" content="{{ cat.alt_seodescript }}"/>
+        {% endfor %}
+        {% endblock %}
+        {% block Link %}
+        <link>https://vekokat.ru/catalog/importnye/</link>
+        {% endblock %}
+        {% block Title %}
+        <title>ИМПОРТНЫЕ КАТАЛИЗАТОРЫ</title>
+        {% endblock %}
+        {% block Content %}
+        <figure><img src="{% static 'core/images/newdesign/catal-catalog-banner.jpg' %}"/></figure>
+        {% for item in category %}
+        <p>{{ item.alt_text|safe }}</p>
+        {% endfor %}
+        {% for model in auto_models  %}
+        <div data-block="cards">
+        <div data-block="card">
+        <header>
+            <h2>{{ model.auto_model }} | {{ model.year }}&nbsp;год</h2>
+        </header>
+        <!-- Начало содержимого карточки. -->
+        <img src="{{ model.image.url }}">
+        <p>ВЕС:&nbsp;{{ model.weight }}гр.</p>
+        <p>ЦЕНА ЗА КГ:&nbsp;{{ model.price_kg}}руб</p>
+        <p>СУММА:&nbsp;</span>{{ model.sum}}руб</p>
+        <!-- Конец содержимого карточки. -->
+        <footer>
+            <a href="https://vekokat.ru/catalog/importnye/{{ model.slug }}">Подробнее...</a>
+        </footer>
+        </div>
+        </div>
+        {% endfor%}
+        {% include "forms/rss-form.rss" %}
+        {% endblock %}

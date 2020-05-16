@@ -1,0 +1,72 @@
+{% load staticfiles %}
+     <div class="prices-title catol-title" id="prices-block">
+            <h2>ЦЕНЫ</h2>
+        </div>
+        <div class="content-container">
+            <div class="prices-items-container">
+                {% for block in price_blocks %}
+                <div class="prices-item">
+                    <div class="prices-item-top">
+                        <amp-img layout="responsive" height="{{ block.image.height}}" width="{{ block.image.width}}" src="{{ block.image.url }}"></amp-img>
+                    </div>
+                    <div class="prices-item-midle equalheight">
+                        <div class="prices-item-title">
+                            <h4>{{ block.title }}</h4>
+                        </div>
+                        <div class="prices-item-text">
+                            {{ block.text|safe }}
+                            {% if block.id == 1 %}
+                                <div role=button tabindex="0" on="tap:show-catalog-{{ block.id }}.hide,close-catalog-{{ block.id }}.show, catalog-1.show" class="show-catalog" id="show-catalog-{{ block.id }}"><amp-img style="padding-right: 7px" height="30px" width="30px" src="{% static 'core/images/newdesign/catalog-icon.png' %}"></amp-img>ПОСМОТРЕТЬ КАТАЛОГ ЦЕН</div>
+                                <div  role=button tabindex="0" on="tap:close-catalog-{{ block.id }}.hide,show-catalog-{{ block.id }}.show, catalog-1.hide" class="close-catalog" hidden id="close-catalog-{{ block.id }}">СКРЫТЬ КАТАЛОГ</div>
+                            {% elif block.id == 2 %}
+                                <div role=button tabindex="0" on="tap:show-catalog-{{ block.id }}.hide,close-catalog-{{ block.id }}.show, catalog-2.show,catalog-2.show" class="show-catalog" id="show-catalog-{{ block.id }}"><amp-img style="padding-right: 7px" height="30px" width="30px" src="{% static 'core/images/newdesign/catalog-icon.png' %}"></amp-img>ПОСМОТРЕТЬ КАТАЛОГ ЦЕН</div>
+                                <div role=button tabindex="0" on="tap:close-catalog-{{ block.id }}.hide,show-catalog-{{ block.id }}.show, catalog-2.hide,catalog-2.hide" class="close-catalog" hidden id="close-catalog-{{ block.id }}">СКРЫТЬ КАТАЛОГ</div>
+                            {% else %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="prices-item-footer">
+                         {{ block.price }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+              <!-- CATALOG BLOCK -->
+        <div class="content-container">
+            <div class="catalog-container">
+            <div class="auto-catalog-rus-container" hidden id="catalog-1">
+                 <div class="catalog-title">
+                     <div class="catalog-title-wrapper"><h1>КАТАЛОГ | ОТЕЧЕСТВЕННЫЕ КАТАЛИЗАТОРЫ</h1></div>
+                 </div>
+            <div class="auto-catalog-rus-wrapper">
+                {% for catalyst in autocatalysts_rus %}
+                    <div class="auto-catalog-item">
+                        <div style="text-align: center;" class="auto-model auto-catalog-position"><span class="catalog-pos-title">Автомобиль:</span><br>{{ catalyst.auto_model }}</div>
+                        <div style="text-align: center;" class="auto-year auto-catalog-position"><span class="catalog-pos-title">Год:</span>  {{ catalyst.year }}</div>
+                        <div style="text-align: center;" class="catalyst-weight auto-catalog-position"><span class="catalog-pos-title">Вес:</span>  {{ catalyst.weight }} гр.</div>
+                        <div style="text-align: center;" class="catalyst-price-kg auto-catalog-position"><span class="catalog-pos-title">Цена за кг:</span> {{ catalyst.price_kg }} руб/кг</div>
+                        <div style="text-align: center;" class="catalyst-sum auto-catalog-position"><span class="catalog-pos-title">Сумма:</span>  {{ catalyst.sum }} руб.</div>
+                    </div>
+                {% endfor %}
+            </div>
+            </div>
+            <div class="auto-catalog-foreign-container" hidden id="catalog-2">
+            <div class="catalog-title">
+                     <div class="catalog-title-wrapper"><h1>КАТАЛОГ | ИМПОРТНЫЕ КАТАЛИЗАТОРЫ</h1></div>
+            </div>
+            <div class="auto-catalog-foreign-wrapper">
+                {% for catalyst in autocatalysts_foreign %}
+                    <div class="auto-catalog-item">
+                        <div style="text-align: center;" class="auto-model auto-catalog-position"><span class="catalog-pos-title">Автомобиль:</span><br>{{ catalyst.auto_model }}</div>
+                        <div style="text-align: center;" class="auto-year auto-catalog-position"><span class="catalog-pos-title">Год:</span>  {{ catalyst.year }}</div>
+                        <div style="text-align: center;" class="catalyst-weight auto-catalog-position"><span class="catalog-pos-title">Вес:</span>  {{ catalyst.weight }} гр.</div>
+                        <div style="text-align: center;" class="catalyst-price-kg auto-catalog-position"><span class="catalog-pos-title">Цена за кг:</span> {{ catalyst.price_kg }} руб/кг</div>
+                        <div style="text-align: center;" class="catalyst-sum auto-catalog-position"><span class="catalog-pos-title">Сумма:</span>  {{ catalyst.sum }} руб.</div>
+                    </div>
+                {% endfor %}
+            </div>
+            </div>
+            </div>
+        </div>

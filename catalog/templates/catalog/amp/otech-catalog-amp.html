@@ -1,0 +1,48 @@
+{% extends 'core/amp/new-base-amp.html' %}
+{% load static %}
+{% block Meta %}
+    {% for cat in category %}
+        <title>{{ cat.alt_seotitle }}</title>
+        <meta name="keywords" content="{{ cat.alt_seokeywords }}"/>
+        <meta name="description" content="{{ cat.alt_seodescript }}"/>
+    {% endfor %}
+{% endblock %}
+{% block AMP-Cannonical-Link %}
+    <link rel="canonical" href="https://www.vekokat.ru/catalog/otechestvennyj/" />
+{% endblock %}
+{% block AMP-Scripts %}
+<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+<script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+<script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+{% endblock %}
+{% block AMP-Content %}
+    <div class="cat-type-banner-wr" style="background: url({% static 'core/images/newdesign/catal-catalog-banner.jpg' %}); background-size: cover;">
+    </div>
+    <div class="catol-title">
+          <h2>ОТЕЧЕСТВЕННЫЕ КАТАЛИЗАТОРЫ</h2>
+    </div>
+    <div class="content-container">
+        <div class="cat-type-text-wr">
+            {% for item in category %}
+                {{ item.amp_alt_text|safe }}
+            {% endfor %}
+        </div>
+        <div class="cat-type-items-container">
+            {% for model in auto_models  %}
+                <a href="/amp/catalog/otechestvennyj/{{ model.slug }}"><div class="cat-type-item-wr">
+                    <div class="type-item-img-wr" style="background: url({{ model.image.url }}); background-size: cover;">
+                        <div class="type-item-model">{{ model.auto_model }}</div>
+                        <div class="type-item-year">{{ model.year }}</div>
+                    </div>
+                    <div class="type-item-weight"><span class="cat-type-text-style">ВЕС:&nbsp;</span>{{ model.weight }}гр.</div>
+                    <div class="type-item-price"><span class="cat-type-text-style">ЦЕНА ЗА КГ:&nbsp;</span>{{ model.price_kg}}руб</div>
+                    <div class="type-item-sum"><span class="cat-type-text-style">СУММА:&nbsp;</span>{{ model.sum}}руб</div>
+                </div></a>
+            {% endfor%}
+        </div>
+        <!-- MAIN FORM BLOCK -->
+        <div class="content-container cat-type-form-wr">
+            {% include 'forms/amp-form.html' %}
+        </div>
+    </div>
+{% endblock %}

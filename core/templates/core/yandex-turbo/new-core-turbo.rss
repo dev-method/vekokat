@@ -1,0 +1,121 @@
+{% extends "core/yandex-turbo/new-base-turbo.rss" %}
+{% load static %}
+        {% block Link %}
+        <link>https://vekokat.ru</link>
+        {% endblock %}
+        {% block Title %}
+        <title>Прием катализаторов</title>
+        {% endblock %}
+
+                  {% block Content %}
+                  <div data-block="slider" data-view="landscape">
+                      {% for slide in slides %}
+                        <figure><img src="{{ slide.slide_768.url }}" /></figure>
+                      {% endfor %}
+                  </div>
+                  <h2>ПОРЯДОК РАБОТ ПРИ ПРИЕМЕ КАТАЛИЗАТОРОВ</h2>
+                  {% for text in met_text %}
+                  <p>{{ text.text|safe }}</p>
+                  {% endfor %}
+                  {% for method in methods %}
+                  <figure>
+                     <img src="{{ method.image.url }}" />
+                     <figcaption><h4>{{ method.number }}{{ method.text }}</h4>
+                     </figcaption>
+                   </figure>
+                  {% endfor %}
+                  <h2>МОБИЛЬНАЯ ЛАБОРАТОРИЯ</h2>
+                  <h3>НЕОСПОРИМОЕ УДОБСТВО ДЛЯ КЛИЕНТОВ</h3>
+                  <h4>Больше не нужно лично посещать приемный пункт и отправлять посылки</h4>
+                  {% for labor in laboratories %}
+                  <h3>{{ labor.title }}</h3>
+                  <figure>
+                     <img src="{{ labor.icon_image.url }}" />
+                     <figcaption><p>{{ labor.text|safe }}</p>
+                     </figcaption>
+                   </figure>
+                  {% endfor %}
+                  <p>Возможность выезда по Вашему адресу.</p>
+                  <p>График и маршрут мобильной лаборатории уточняйте по телефону.</p>
+                  <img src="{% static 'core/images/newdesign/car.png' %}">
+                  <h2>РЕГИОНЫ</h2>
+                  <h4>Свой материал Вы можете отправить почтой России или любой транспортной компанией. Сообщите нам о своем желании отправить посылку любым удобным для Вас способом: смс, whatsapp, email, телефон. Наши специалисты свяжутся с Вами для дальнейшей консультации.</h4>
+                  <h3>Порядок работы с регионами</h3>
+                  {% for region in regions %}
+                  <figure>
+                     <img src="{{ region.icon_image.url }}" />
+                     <figcaption><h4>{{ region.text|safe }}</h4>
+                     </figcaption>
+                   </figure>
+                  {% endfor %}
+                  <h2>ЦЕНЫ</h2>
+                  {% for block in price_blocks %}
+                  <figure>
+                     <img src="{{ block.image.url }}" />
+                     <figcaption><h2>{{ block.title }}</h2>
+                                 <h3>{{ block.text|safe }}</h3>
+                                 <h2>{{ block.price }}</h2>
+                     </figcaption>
+                   </figure>
+                  {% endfor %}
+                  <h2>КАТАЛОГ</h2>
+                  <div data-block="accordion">
+                       <div data-block="item" data-title="Отечественные катализаторы">
+                          {% for catalyst in autocatalysts_rus %}
+                             <h3>Автомобиль: {{catalyst.auto_model }}</h3>
+                             <h4>Год: {{ catalyst.year }}</h4>
+                             <h4>Вес: {{ catalyst.weight }} гр.</h4>
+                             <h4>Цена за кг: {{ catalyst.price_kg }} руб/кг</h4>
+                             <h4>Сумма: {{ catalyst.sum }} руб.</h4>
+                             <p></p>
+                          {% endfor %}
+                       </div>
+                       <div data-block="item" data-title="Импортные катализаторы">
+                          {% for catalyst in autocatalysts_foreign %}
+                             <h3>Автомобиль: {{catalyst.auto_model }}</h3>
+                             <h4>Год: {{ catalyst.year }}</h4>
+                             <h4>Вес: {{ catalyst.weight }} гр.</h4>
+                             <h4>Цена за кг: {{ catalyst.price_kg }} руб/кг</h4>
+                             <h4>Сумма: {{ catalyst.sum }} руб.</h4>
+                             <p></p>
+                          {% endfor %}
+                       </div>
+                  </div>
+                  <h2>ПОЧЕМУ ВЫГОДНО СДАТЬ КАТАЛИЗАТОР У НАС</h2>
+                  {% for text in adv_text %}
+                  <p>{{ text.text|safe }}</p>
+                  {% endfor %}
+                  {% for advantage in advantages %}
+                  <figure>
+                     <img src="{{ advantage.icon_image.url }}"/>
+                     <figcaption><h3>{{ advantage.text|safe }}</h3>
+                     </figcaption>
+                   </figure>
+                  {% endfor %}
+                  <h2>О НАС</h2>
+                  {% for text in about_text %}
+                    {{ text.text|safe }}
+                  {% endfor %}
+                  <h2>НАШИ ПАРТНЕРЫ<h2>
+                  <h4>В данных сервисах Вы получите квалифицированный ремонт и обслуживание Вашего автомобиля, за приемлемую стоимость.</h4>
+                  <h3>МЫ РЕКОМЕНДУЕМ:</h3>
+                  {% for partner in partners %}
+                      <figure>
+                          <img src="{{ partner.image.url }}" />
+                          <figcaption>
+                                <h4>{{ partner.city }}</h4>
+                                <h4><a href="{{ partner.link }}">{{ partner.link }}</a></h4>
+                          </figcaption>
+                      </figure>
+                      {{ partner.text|safe }}
+                  {% endfor %}
+                  {% include "forms/rss-form.rss" %}
+                  <h2>КОНТАКТЫ</h2>
+                  <p>МО, Электросталь</p>
+                  <p>ул. Пионерская д.22</p>
+                  <p>+7(925)553-35-52</p>
+                  <p>+7(926)866-86-89</p>
+                  <p>vekokat@gmail.com</p>
+                  <a href="/"><img src="{% static 'core/images/newdesign/vekokat-new-logo-100.png' %}"></a>
+                  <iframe src="https://yandex.ru/map-widget/v1/-/CBB4RMgPTA" width="560" height="400" frameborder="1" allowfullscreen="true"></iframe>
+                  {% endblock %}

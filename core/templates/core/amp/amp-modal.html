@@ -1,0 +1,37 @@
+{% load staticfiles %}
+{% if errors %}
+       <div id="errors-container">
+                   <div class="error">Для отправки сообщения необходимо:</div>
+                  {% for error in errors %}
+                      <div class="error">{{ error }}</div>
+                  {% endfor %}
+                  {% if messages %}
+                      {% for message in messages %}
+                          <div class="error">{{ message }}</div>
+                      {% endfor %}
+                  {% endif %}
+       </div>
+       {% endif %}
+<div id="modal-form" hidden class="modal-amp">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span role="button" role="button" tabindex="0" on="tap:modal-form.toggleVisibility" class="close">&times;</span>
+    <div class="mainform-container">
+                <form method="post" action-xhr="/amp/form-handler/" class="mainform">
+                    {% csrf_token %}
+                    <div class="mainform-input-wr">
+                        <input  id="name" placeholder="Введите ваше имя" type="text" value="{{ form.name }}" name="name" class="mainform-control">
+                    </div>
+                    <div class="mainform-input-wr">
+                        <input  id="mail" placeholder="Введите ваш e-mail" type="text" value="{{ form.mail }}" name="mail" class="mainform-control">
+                    </div>
+                    <div class="mainform-input-wr">
+                        <input  id="phone_modal" placeholder="Введите ваш номер" type="text" value="{{ form.phone_modal }}" name="phone_modal" class="mainform-control">
+                    </div>
+                    <button class="mainform-button" type="submit" name="action">Узнать стоимость</button>
+                </form>
+            </div>
+  </div>
+
+</div>

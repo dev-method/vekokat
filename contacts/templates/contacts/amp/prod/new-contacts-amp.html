@@ -1,0 +1,105 @@
+{% extends 'core/amp/new-base-amp.html' %}
+{% load static %}
+{% block AMP-Cannonical-Link %}
+    <link rel="canonical" href="https://www.vekokat.ru/contacts/" />
+{% endblock %}
+{% block AMP-Scripts %}
+<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+<script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+{% endblock %}
+{% block AMP-Content %}
+
+    <div class="content-container">
+       {% if errors %}
+       <div id="errors-container">
+                   <div class="error">Для отправки сообщения необходимо:</div>
+                  {% for error in errors %}
+                      <div class="error">{{ error }}</div>
+                  {% endfor %}
+                  {% if messages %}
+                      {% for message in messages %}
+                          <div class="error">{{ message }}</div>
+                      {% endfor %}
+                  {% endif %}
+       </div>
+       {% endif %}
+       <div class="contacts-page-title-wrapper">
+         <div class="contacts-page-title">
+             <h2>КОНТАКТНАЯ ИНФОРМАЦИЯ</h2>
+         </div>
+       </div>
+       <div class="contacts-content-container">
+       <div class="contact-text-wrapper">
+          <div class="contact-text">
+              {% for text in texts %}
+                 {{ text.sub|safe }}
+              {% endfor %}
+          </div>
+       </div>
+      <div class="contact-form-wrapper">
+      <div class="contact-form">
+         <div class="contacts_dt_formorder">
+                   <form method="post" action-xhr="/amp/contacts/">
+                       {% csrf_token %}
+                       <div class="form-group header-form">
+                                <div class="input-field cp-form-name-wr">
+                                    <label for="contacts_name" class="contactformlabel">Как вас зовут</label>
+                                    <input  id="contacts_name" type="text" value="{{ form.contacts_name }}" name="contacts_name" class="contact-page-form-input">
+                                </div>
+                                <div class="input-field cp-form-phone-wr">
+                                    <label for="contacts_contacts" class="contactformlabel">Телефон или почта</label>
+                                    <input id="contacts_contacts"  value="{{ form.contacts_contacts }}" name="contacts_contacts" type="text" class="contact-page-form-input">
+                                </div>
+                       </div>
+                       <div class="form-group form-message">
+                          <div class="input-field">
+                            <label for="textarea-page-contact" class="contactformlabel">Текст сообщения</label>
+                            <textarea id="textarea-page-contact" value="{{ form.description }}" name="description" class="contact-page-form-input"></textarea>
+                          </div>
+                        </div>
+                       <button class="btn btn-secondary contact-form-button" type="submit" name="action">Отправить
+                       </button>
+                     </form>
+               </div>
+      </div>
+      </div>
+      </div>
+    </div>
+    <div class="base-container">
+       <div class="map-wrapper">
+          <div class="yandex-map">
+          <amp-iframe width="400" height="300"
+                 sandbox="allow-scripts allow-same-origin"
+                 layout="responsive"
+                 frameborder="0"
+                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2244.009550070132!2d38.44844931614856!3d55.775705980559465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x414adc6af6bf1121%3A0xd971550213fb23fc!2z0YPQuy4g0J_QuNC-0L3QtdGA0YHQutCw0Y8sIDIyLCDQrdC70LXQutGC0YDQvtGB0YLQsNC70YwsINCc0L7RgdC60L7QstGB0LrQsNGPINC-0LHQuy4sIDE0NDAwNw!5e0!3m2!1sru!2sru!4v1557688763061!5m2!1sru!2sru">
+            </amp-iframe>           </div>
+       </div>
+    </div>
+
+<!-- The Modal -->
+<div id="modal-form" hidden class="modal-amp">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span role="button" role="button" tabindex="0" on="tap:modal-form.toggleVisibility" class="close">&times;</span>
+    <div class="mainform-container">
+                <form method="post" action-xhr="/amp/contacts/" class="mainform">
+                    {% csrf_token %}
+                    <div class="mainform-input-wr">
+                        <input  id="name" placeholder="Введите ваше имя" type="text" value="{{ form.name }}" name="name" class="mainform-control">
+                    </div>
+                    <div class="mainform-input-wr">
+                        <input  id="mail" placeholder="Введите ваш e-mail" type="text" value="{{ form.mail }}" name="mail" class="mainform-control">
+                    </div>
+                    <div class="mainform-input-wr">
+                        <input  id="phone_modal" placeholder="Введите ваш номер" type="text" value="{{ form.phone_modal }}" name="phone_modal" class="mainform-control">
+                    </div>
+                    <button class="mainform-button" type="submit" name="action">Узнать стоимость</button>
+                </form>
+            </div>
+  </div>
+
+</div>
+{% endblock %}

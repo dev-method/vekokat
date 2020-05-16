@@ -1,0 +1,54 @@
+{% extends "core/yandex-turbo/new-base-turbo.rss" %}
+{% load static %}
+{% block Meta %}
+        <title>{{ cat_type.seotitle }}</title>
+        <meta name="keywords" content="{{ cat_type.seokeywords }}"/>
+        <meta name="description" content="{{ cat_type.seodescript }}"/>
+{% endblock %}
+{% block Link %}
+        <link>https://vekokat.ru/catalizators/{{ cat_type.slug }}/</link>
+{% endblock %}
+{% block Title %}
+        <title>{{ cat_type.title }}</title>
+{% endblock %}
+{% block Content %}
+{% for img in imgs %}
+<figure><img src="{{ img.img.url }}"/></figure>
+{% endfor %}
+<p>{{ cat_type.text|safe }}</p>
+<h2>ЦЕНЫ</h2>
+                  {% for block in price_blocks %}
+                  <figure>
+                     <img src="{{ block.image.url }}" />
+                     <figcaption><h2>{{ block.title }}</h2>
+                                 <h3>{{ block.text|safe }}</h3>
+                                 <h2>{{ block.price }}</h2>
+                     </figcaption>
+                   </figure>
+                  {% endfor %}
+<h2>КАТАЛОГ</h2>
+                  <div data-block="accordion">
+                       <div data-block="item" data-title="Отечественные катализаторы">
+                          {% for catalyst in autocatalysts_rus %}
+                             <h3>Автомобиль: {{catalyst.auto_model }}</h3>
+                             <h4>Год: {{ catalyst.year }}</h4>
+                             <h4>Вес: {{ catalyst.weight }} гр.</h4>
+                             <h4>Цена за кг: {{ catalyst.price_kg }} руб/кг</h4>
+                             <h4>Сумма: {{ catalyst.sum }} руб.</h4>
+                             <p></p>
+                          {% endfor %}
+                       </div>
+                       <div data-block="item" data-title="Импортные катализаторы">
+                          {% for catalyst in autocatalysts_foreign %}
+                             <h3>Автомобиль: {{catalyst.auto_model }}</h3>
+                             <h4>Год: {{ catalyst.year }}</h4>
+                             <h4>Вес: {{ catalyst.weight }} гр.</h4>
+                             <h4>Цена за кг: {{ catalyst.price_kg }} руб/кг</h4>
+                             <h4>Сумма: {{ catalyst.sum }} руб.</h4>
+                             <p></p>
+                          {% endfor %}
+                       </div>
+                  </div>
+                  <h2>Узнайте приблизительную стоимость вашего катализатора, заполнив форму</h2>
+                  {% include "forms/rss-form.rss" %}
+{% endblock %}

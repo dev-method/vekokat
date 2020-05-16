@@ -1,0 +1,108 @@
+{% load static %}
+<rss
+    xmlns:yandex="http://news.yandex.ru"
+    xmlns:media="http://search.yahoo.com/mrss/"
+    xmlns:turbo="http://turbo.yandex.ru"
+    version="2.0"
+>
+    <channel>
+        <title>ПРИЕМ КАТАЛИЗАТОРОВ</title>
+        <link>https://vekokat.ru</link>
+        <description>ПРИЕМ КАТАЛИЗАТОРОВ В ГОРОДАХ</description>
+        <turbo:analytics
+         id="46142247"
+         type="Yandex"
+         >
+        </turbo:analytics>
+        <turbo:analytics
+         id="UA-65303610-10"
+         type="Google">
+        </turbo:analytics>
+        {% for city in cities %}
+        <item turbo="true">
+        <link>https://vekokat.ru/priem-katalizatorov/{{ city.slug }}/</link>
+        <title>ПРИЕМ КАТАЛИЗАТОРОВ В ГОРОДЕ {{ city.city_name }}</title>
+                <turbo:content><![CDATA[
+                <a href="http://vekokat.ru"><img src="{% static 'core/images/newdesign/vekokat-new-logo-100.png' %}"</a>
+                <h2>скупка и переработка отработанных автомобильных катализаторов</h2>
+                <img src="{% static 'core/images/newdesign/phone-icon-45.png' %}">
+                <h2><a href="tel:+79255533552"><p>8 (925) 553 35 52</p></a></h2>
+                <h2><a href="tel:+79268668689"><p>8 (926) 866 86 89</p></a></h2>
+                <div data-block="slider" data-view="landscape">
+                      {% if city.image_1 %}
+                      <figure><img src="{{city.image_1_768.url}}" /></figure>
+                      {% else %}
+                      {% endif %}
+                      {% if city.image_2 %}
+                      <figure><img src="{{city.image_2_768.url}}" /></figure>
+                      {% else %}
+                      {% endif %}
+                      {% if city.image_3 %}
+                      <figure><img src="{{city.image_3_768.url}}" /></figure>
+                      {% else %}
+                      {% endif %}
+                </div>
+                <h2>{{ city.seotitle }}</h2>
+               <p>Любой современный город, такой как, к примеру, город {{ city.city_name }} - это огромное количество людей, живущих и постоянно перемещающихся по своим важным делам. Многие из них используют для поездок собственные автомобили. Вот и в городе {{ city.city_name }} на каждую 1000 человек в среднем приходится 350-400 авто. В современных реалиях любая копейка, как говорится, не бывает лишней. А ведь большинство автомобилистов и не подозревают, что буквально рядом с ними есть возможность весьма неплохо заработать.</p>
+               <p>Мы поговорим о приеме катализаторов в городе {{ city.city_name }}. Каталитический нейтрализатор , согласно нормам Евро, является  обязательной частью любого автомобиля. Он отвечает за преобразование вредных выбросов двигателя в относительно безопасные газы и воду. Автомобильный катализатор внутри имеет структуру, похожую на соты, покрытые редкими металлами-катализаторами, которые являются активаторами реакции преобразования выхлопов авто. Эти редкие металлы, такие как палладий, родий и платина и являются основной ценностью внутренностей катализатора. Вы можете сдать катализатор в городе {{ city.city_name }} в пункт приема, где есть все необходимое оборудование и персонал для получения ценных металлов. В качестве компенсации вы получаете приличное материальное вознаграждение.</p>
+               <p>Стоимость приема отработанных катализаторов в городе {{ city.city_name }} зависит от нескольких факторов. Во первых, это страна-производитель. Как правило, импортные катализаторы отличаются более высоким содержанием редких металлов по сравнению с катализаторами отечественного производства. Поэтому сдать импортные катализаторы будет немного выгоднее. В любом случае, сдать катализатор и получить за него деньги — это лучше чем просто оставить его где-то в автосервисе или выкинуть на свалку.</p>
+               <p>В зависимости от материала производства, автомобильные катализаторы бывают керамическими и металлическими. Первые дешевле, но более хрупки и чувствительны к механическим повреждениям, вторые более надежны и долговечны. Различается и стоимость приема катализаторов.Помимо всего перечисленного, для владельцев авто с дизельными двигателями, есть возможность сдать сажевые фильтры по весьма привлекательной цене.</p>
+               <p>Наша организация поможет вам сдать автомобильный катализатор в городе {{ city.city_name }}. Мы уже давно работаем на рынке переработки вторсырья, у нас опытный персонал и хорошие отзывы клиентов о нашей деятельности. Честный прием, удобные способы оплаты, наличие мобильной лаборатории для выезда к клиенту в любое место — наши главные отличительные особенности. Ждем ваших звонков и заявок.</p>
+               <h2>ЦЕНЫ</h2>
+                  {% for block in price_blocks %}
+                  <figure>
+                     <img src="{{ block.image.url }}" />
+                     <figcaption><h2>{{ block.title }}</h2>
+                                 <h3>{{ block.text|safe }}</h3>
+                                 <h2>{{ block.price }}</h2>
+                     </figcaption>
+                   </figure>
+                  {% endfor %}
+                  <h2>КАТАЛОГ</h2>
+                  <div data-block="accordion">
+                       <div data-block="item" data-title="Отечественные катализаторы">
+                          {% for catalyst in autocatalysts_rus %}
+                             <h3>Автомобиль: {{catalyst.auto_model }}</h3>
+                             <h4>Год: {{ catalyst.year }}</h4>
+                             <h4>Вес: {{ catalyst.weight }} гр.</h4>
+                             <h4>Цена за кг: {{ catalyst.price_kg }} руб/кг</h4>
+                             <h4>Сумма: {{ catalyst.sum }} руб.</h4>
+                             <p></p>
+                          {% endfor %}
+                       </div>
+                       <div data-block="item" data-title="Импортные катализаторы">
+                          {% for catalyst in autocatalysts_foreign %}
+                             <h3>Автомобиль: {{catalyst.auto_model }}</h3>
+                             <h4>Год: {{ catalyst.year }}</h4>
+                             <h4>Вес: {{ catalyst.weight }} гр.</h4>
+                             <h4>Цена за кг: {{ catalyst.price_kg }} руб/кг</h4>
+                             <h4>Сумма: {{ catalyst.sum }} руб.</h4>
+                             <p></p>
+                          {% endfor %}
+                       </div>
+                  </div>
+                  <h2>ПОРЯДОК РАБОТ ПРИ ПРИЕМЕ КАТАЛИЗАТОРОВ</h2>
+                  {% for text in met_text %}
+                  <p>{{ text.text|safe }}</p>
+                  {% endfor %}
+                  {% for method in methods %}
+                  <figure>
+                     <img src="{{ method.image.url }}" />
+                     <figcaption><h4>{{ method.number }}{{ method.text }}</h4>
+                     </figcaption>
+                   </figure>
+                  {% endfor %}
+                {% include "forms/rss-form.rss" %}
+                  <button
+                     formaction="https://vekokat.ru/contacts/"
+                     data-background-color="#333333"
+                     data-color="white"
+                     data-turbo="false"
+                     data-primary="true"
+                     >Заказать звонок</button>
+                <p></p>
+            ]]></turbo:content>
+        </item>
+        {% endfor %}
+    </channel>
+</rss>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="yandex-verification" content="2e64259fcd775950" />
+    <meta name="google-site-verification" content="4rdwdQ9DJvCPu-EBKr9PeLcjEWHAicy5BzC91Jwgdlc" />
+    <link rel="manifest" href="{% static 'core/pwa/manifest.json' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0a68a3"/>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <link href="{% static 'core/images/favicon.ico' %}" rel="shortcut icon" type="image/x-icon" />
+	{% block LinkAmp %}
+    {% endblock %}
+    {% block Meta %}
+        {% for s in seo %}
+        <title>{{ s.title }}</title>
+        <meta name="keywords" content="{{ s.keywords }}"/>
+        <meta name="description" content="{{s.description}}"/>
+        {% endfor %}
+    {% endblock %}
+    {% block CSS %}
+    {% if debug_flag %}
+    <link href="{% static 'core/plugins/vendor/bootstrap4/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'core/css/dev/style.css' %}" rel="stylesheet">
+    <link href="{% static 'core/plugins/vendor/slicknav/slicknav.min.css' %}" rel="stylesheet">
+    {% else %}
+    <link rel="preload" href="{% static 'core/css/prod/prod-style.css' %}" as="style">
+    <link href="{% static 'core/css/prod/prod-style.css' %}" rel="stylesheet">
+    <link rel="preload" href="{% static 'core/plugins/prod/base.js' %}" as="script">
+    {% endif %}
+    {% endblock %}
+    {% block ExstraCSS %}{% endblock %}
+    {% block HeaderJS %}
+    {% endblock %}
+</head>
+<body>
+
+    <!--========================================================
+                              HEADER
+    =========================================================-->
+    {% block Header %}
+    {% endblock %}
+
+    <!--========================================================
+                              CONTENT
+    =========================================================-->
+
+    <main>
+    {% block Content %}
+    {% endblock %}
+    </main>
+
+    <!--========================================================
+                            FOOTER
+    =========================================================-->
+    {% block Footer %}
+        <footer>
+        <div class="footer-wrapper row">
+            <div class="footer-logo col-lg-4 col-xs-4 col-md-4 col-sm-12">
+                <div class="footer-logo-wrap">
+                  <a href="/"><img src="{% static 'core/images/VEKOKAT_NEWLOGO_MIDDLE.png' %}" class="img-fluid"/></a>
+                </div>
+            </div>
+            <div class="footer-contacts col-lg-4 col-xs-4 col-md-4 col-sm-6">
+                {% for text in f_texts %}
+                  {{ text.sub|safe }}
+                {% endfor %}
+            </div>
+            <div class="footer-links col-lg-4 col-xs-4 col-md-4 col-sm-6">
+                 <ul><h4>Ссылки</h4>
+                     {% for link in f_links %}
+                     <li><a href="{{ link.href }}">{{ link.sub }}</a></li>
+                     {% endfor %}
+                 </ul>
+            </div>
+        </div>
+        </footer>
+    {% endblock %}
+{% block JS %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.7.1/lazyload.min.js"></script>
+{% if debug_flag %}
+    <script src="{% static 'core/plugins/vendor/jquery-2.2.4.min.js' %}"></script>
+    <script src="{% static 'core/plugins/vendor/tether.min.js' %}"></script>
+    <script src="{% static 'core/plugins/vendor/bootstrap4/bootstrap.min.js' %}"></script>
+    <script src="{% static 'core/plugins/vendor/slicknav/jquery.slicknav.min.js' %}"></script>
+{% else %}
+    <script src="{% static 'core/plugins/prod/base.js' %}"></script>
+{% endif %}
+<script src="https://use.fontawesome.com/112094bd1f.js"></script>
+    <script>
+        var myLazyLoad = new LazyLoad();
+    </script>
+    <script>
+	$(function(){
+		$('#custom_menu').slicknav({
+            label:'МЕНЮ'
+        });
+	});
+</script>
+{% endblock %}
+{% block ExtraJS %}{% endblock %}
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter46142247 = new Ya.Metrika({
+                    id:46142247,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/46142247" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-65303610-10"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-65303610-10');
+</script>
+<script>
+    document.ondragstart=noselect;
+    document.onselectstart=noselect;
+    document.oncontextmenu=noselect;
+    function noselect(){return false;}
+</script>
+</body>
+</html>

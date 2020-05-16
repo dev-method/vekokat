@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="{% static 'core/pwa/manifest.json' %}">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <link href="{% static 'core/images/favicon.ico' %}" rel="shortcut icon" type="image/x-icon" />
+    {% block Meta %}
+        {% for s in seo %}
+        <title>{{ s.title }}</title>
+        <meta name="keywords" content="{{ s.keywords }}"/>
+        <meta name="description" content="{{s.description}}"/>
+        {% endfor %}
+    {% endblock %}
+    {% block CSS %}
+    <link href="{% static 'core/css/stylesheets/style.css' %}" rel="stylesheet">
+    {% endblock %}
+    {% block ExstraCSS %}{% endblock %}
+    {% block HeaderJS %}
+    {% endblock %}
+</head>
+<body>
+
+    <!--========================================================
+                              HEADER
+    =========================================================-->
+    {% block Header %}
+    {% endblock %}
+
+    <!--========================================================
+                              CONTENT
+    =========================================================-->
+
+    <main>
+    {% block Content %}
+    {% endblock %}
+    </main>
+
+    <!--========================================================
+                            FOOTER
+    =========================================================-->
+    {% block Footer %}{% endblock %}
+{% block JS %}
+<script src="{% static 'core/plugins/jquery-2.1.4.min.js' %}"></script>
+<script src="{% static 'core/pwa/sw-register.js' %}"></script>
+<script src="{% static 'core/pwa/service-worker.js' %}"></script>
+{% endblock %}
+{% block ExtraJS %}{% endblock %}
+</body>
+</html>

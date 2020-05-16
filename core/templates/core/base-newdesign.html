@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="yandex-verification" content="659741f1c81c0cde" />
+    <meta name="google-site-verification" content="4rdwdQ9DJvCPu-EBKr9PeLcjEWHAicy5BzC91Jwgdlc" />
+    <link rel="manifest" href="{% static 'core/pwa/manifest.json' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0a68a3"/>
+    <link href="{% static 'core/images/favicon.ico' %}" rel="shortcut icon" type="image/x-icon" />
+	<link rel="preconnect" href="https://www.google-analytics.com">
+    <link rel="preconnect" href="https://www.gstatic.com">
+    {% block OpenGraph %}
+    {% endblock %}
+	{% block LinkAmp %}
+    {% endblock %}
+    {% block Meta %}
+        {% for s in seo %}
+        <title>{{ s.title }}</title>
+        <meta name="keywords" content="{{ s.keywords }}"/>
+        <meta name="description" content="{{s.description}}"/>
+        {% endfor %}
+    {% endblock %}
+    {% block CSS %}
+    <link href="{% static 'core/css/dev/newdesign-base.css' %}" rel="stylesheet">
+    <link href="{% static 'core/css/dev/newdesign-576.css' %}" rel="stylesheet">
+    <link href="{% static 'core/css/dev/newdesign-768.css' %}" rel="stylesheet">
+    <link href="{% static 'core/css/dev/newdesign-992.css' %}" rel="stylesheet">
+
+    {% endblock %}
+    {% block ExstraCSS %}{% endblock %}
+    {% block HeaderJS %}
+    {% endblock %}
+</head>
+<body id="body-element" itemscope itemtype="http://schema.org/WebPage">
+<!--========================================================
+                              MOBILE_MENU
+    =========================================================-->
+
+    {% block MobileMenu %}
+       <div class="mobile-menu-container">
+       <div onclick="toggleMenu(this)" class="mobile-menu-icon-wr" >
+           <img alt="ВЕКОкат|Открыть меню" id="burger-icon" height="50px" src="{% static 'core/images/newdesign/burger_icon_white_svg.svg' %}"/>
+           <img alt="ВЕКОкат|Закрыть меню" id="close-icon" height="50px" src="{% static 'core/images/newdesign/cross_icon_white_svg.svg' %}"/>
+       </div>
+       <div class="mobile-menu-text-wr" id="modal-button">
+           ЗАКАЗАТЬ ЗВОНОК
+       </div>
+       <div class="mobile-menu-icons-container">
+           <a data-scroll href="/#map-container"><img alt="ВЕКОкат|К карте" height="50px" src="{% static 'core/images/newdesign/map_icon_white_svg.svg' %}"/></a>
+           <a data-scroll href="/#form-container"><img alt="ВЕКОкат|К форме" height="50px" src="{% static 'core/images/newdesign/mail_icon_white_svg.svg' %}"/></a>
+       </div>
+       </div>
+       <div class="mobile-menu-content-wr" id="mobile-menu-content">
+           <div class="mobile-menu-content-item" onclick="showMobHidden('main-dropdown', 'mob-main-plus', 'mob-main-minus')">ГЛАВНАЯ
+               <img  class="menu-icon-plus" alt="Раскрыть меню" id="mob-main-plus" height="15px" src="{% static 'core/images/newdesign/plus_icon_white_100.svg' %}"/>
+               <img  class="menu-icon-minus" alt="Свернуть меню" id="mob-main-minus" height="15px" src="{% static 'core/images/newdesign/circle-cross-white-100.svg' %}"/>
+           </div>
+           <div class="mobile-menu-hidden" style="display: none;" id="main-dropdown">
+               <div class="mob-menu-hidden-item"><a data-scroll href="/#advantages-block" onclick="toggleMenu()">ПРЕИМУЩЕСТВА</a></div>
+               <div class="mob-menu-hidden-item"><a data-scroll href="/#working-methods-block" onclick="toggleMenu()">ПОРЯДОК РАБОТ</a></div>
+               <div class="mob-menu-hidden-item"><a data-scroll href="/#laboratory-block" onclick="toggleMenu()">МОБИЛЬНАЯ ЛАБОРАТОРИЯ</a></div>
+               <div class="mob-menu-hidden-item"><a data-scroll href="/#regions-block" onclick="toggleMenu()">РЕГИОНЫ</a></div>
+               <div class="mob-menu-hidden-item"><a data-scroll href="/#prices-block" onclick="toggleMenu()">ЦЕНЫ</a></div>
+               <div class="mob-menu-hidden-item"><a data-scroll href="/#about-block" onclick="toggleMenu()">О НАС</a></div>
+           </div>
+           <div class="mobile-menu-content-item" onclick="showMobHidden('priem-dropdown', 'mob-priem-plus', 'mob-priem-minus')">ПРИЕМ КАТАЛИЗАТОРОВ
+               <img  class="menu-icon-plus" alt="Раскрыть меню" id="mob-priem-plus" height="15px" src="{% static 'core/images/newdesign/plus_icon_white_100.svg' %}"/>
+               <img  class="menu-icon-minus" alt="Свернуть меню" id="mob-priem-minus" height="15px" src="{% static 'core/images/newdesign/circle-cross-white-100.svg' %}"/>
+           </div>
+           <div class="mobile-menu-hidden" style="display: none;" id="priem-dropdown">
+            <div class="mob-menu-hidden-item"><a href="/catalizators/otechestvennye-katalizatory">ОТЕЧЕСТВЕННЫЕ КАТАЛИЗАТОРЫ</a></div>
+            <div class="mob-menu-hidden-item"><a href="/catalizators/importnye-katalizatory">ИМПОРТНЫЕ КАТАЛИЗАТОРЫ</a></div>
+            <div class="mob-menu-hidden-item"><a href="/catalizators/otechestvennye-metallicheskie-katalizatory">ОТЕЧЕСТВЕННЫЕ МЕТАЛЛИЧЕСКИЕ КАТАЛИЗАТОРЫ</a></div>
+            <div class="mob-menu-hidden-item"><a href="/catalizators/importnye-metallicheskie-katalizatory">ИМПОРТНЫЕ МЕТАЛЛИЧЕСКИЕ КАТАЛИЗАТОРЫ</a></div>
+            <div class="mob-menu-hidden-item"><a href="/catalizators/sazhevye-filtry">САЖЕВЫЕ ФИЛЬТРЫ</a></div>
+           </div>
+           <div class="mobile-menu-content-item" onclick="showMobHidden('catalog-dropdown', 'catalog-priem-plus', 'catalog-priem-minus')">КАТАЛОГ
+               <img  class="menu-icon-plus" alt="Раскрыть меню" id="catalog-priem-plus" height="15px" src="{% static 'core/images/newdesign/plus_icon_white_100.svg' %}"/>
+               <img  class="menu-icon-minus" alt="Свернуть меню" id="catalog-priem-minus" height="15px" src="{% static 'core/images/newdesign/circle-cross-white-100.svg' %}"/>
+           </div>
+           <div class="mobile-menu-hidden" style="display: none;" id="catalog-dropdown">
+               <div class="mob-menu-hidden-item"><a href="/catalog/otechestvennyj/">ОТЕЧЕСТВЕННЫЕ КАТАЛИЗАТОРЫ</a></div>
+               <div class="mob-menu-hidden-item"><a href="/catalog/importnye/">ИМПОРТНЫЕ КАТАЛИЗАТОРЫ</a></div>
+           </div>
+           <div class="mobile-menu-content-item">
+               <a data-scroll href="/conditions/">ТРЕБОВАНИЯ И УСЛОВИЯ ПРИЕМА</a>
+           </div>
+           <div class="mobile-menu-content-item">
+               <a data-scroll href="/#working-methods-block" onclick="toggleMenu()">ПОРЯДОК РАБОТЫ</a>
+           </div>
+           <div class="mobile-menu-content-item">
+               <a data-scroll href="/#laboratory-block" onclick="toggleMenu()">МОБИЛЬНАЯ ЛАБОРАТОРИЯ</a>
+           </div>
+           <div class="mobile-menu-content-item">
+               <a data-scroll href="/#regions-block" onclick="toggleMenu()">РЕГИОНЫ</a>
+           </div>
+           <div class="mobile-menu-content-item">
+               <a data-scroll href="/#prices-block" onclick="toggleMenu()">ЦЕНЫ</a>
+           </div>
+           <div class="mobile-menu-content-item">
+               <a data-scroll href="/#about-block" onclick="toggleMenu()">О НАС</a>
+           </div>
+           <div class="mobile-menu-content-item">
+               <a data-scroll href="/contacts/">КОНТАКТЫ</a>
+           </div>
+           <div class="mobile-menu-content-item">
+               <a data-scroll href="/#form-container" onclick="toggleMenu()">ЗАКАЗАТЬ ЗВОНОК</a>
+           </div>
+		   <div class="mobile-menu-content-item">
+               <a data-scroll href="/#partners-block" onclick="toggleMenu()">ПАРТНЕРЫ</a>
+           </div>
+       </div>
+
+    {% endblock %}
+
+    <!--========================================================
+                              HEADER
+    =========================================================-->
+{% block Header %}
+    <div class="base-container">
+      <div class="content-container">
+
+      <!-- HEADER -->
+
+          <header>
+              <div class="header-logo-container">
+                  <a href="/">
+				    <picture>
+                         <source type="image/webp" srcset="{% static 'core/images/newdesign/vekokat-new-logo-100.webp' %}">
+                         <source type="image/png" srcset="{% static 'core/images/newdesign/vekokat-new-logo-100.png' %}">
+                         <img alt="ВЕКОкат" src="{% static 'core/images/newdesign/vekokat-new-logo-100.png' %}"/>
+                    </picture>
+				  </a>
+              </div>
+              <div class="header-txt-ph-align-wr">
+                  <div class="header-text-container">
+                      <h2>скупка и переработка отработанных </br>автомобильных катализаторов</h2>
+                  </div>
+                  <div class="header-phones-container">
+                      <div class="header-phone-icon">
+                          <img alt="ВЕКОкат|Телефон" height="55px" data-src="{% static 'core/images/newdesign/phon-icon-svg.svg' %}">
+                      </div>
+                      <div class="header-phones">
+                          <a href="tel:+79255533552"><p>8 (925) 553 35 52</p></a>
+                          <a href="tel:+79268668689"><p>8 (926) 866 86 89</p></a>
+                      </div>
+                  </div>
+              </div>
+          </header>
+      </div>
+
+      <!-- MAIN MENU -->
+
+      <div class="main-menu">
+          <div class="main-menu-icons-container">
+              <div class="menu-icons-wr">
+                 <div class="main-menu-map-icon">
+                     <a data-scroll href="/#map-container"><img height="40px" alt="Перейти к карте" src="{% static 'core/images/newdesign/map-main-icon.svg' %}"/></a>
+                 </div>
+                 <div class="main-menu-mail-icon">
+                     <a data-scroll href="/#form-container"><img height="40px" alt="Перейти к карте" src="{% static 'core/images/newdesign/mail-main-icon.svg' %}"/></a>
+                 </div>
+              </div>
+          </div>
+          <div class="main-menu-items-container" id="main-block" itemscope itemtype="http://schema.org/SiteNavigationElement">
+            <div class="main-menu-item main-dropdown-hover"><a data-scroll href="/#main-block" itemprop="url" ><span itemprop="name">ГЛАВНАЯ</span></a>
+                <div class="menu-dropdown main-dropdown">
+                    <div class="dropdown-item"><a data-scroll href="/#advantages-block" itemprop="url" ><span itemprop="name">Преимущества</span></a></div>
+                    <div class="dropdown-item"><a data-scroll href="/#working-methods-block" itemprop="url" ><span itemprop="name">Порядок работы</span></a></div>
+                    <div class="dropdown-item"><a data-scroll href="/#laboratory-block" itemprop="url" ><span itemprop="name">Мобильная лаборатория</span></a></div>
+                    <div class="dropdown-item"><a data-scroll href="/#regions-block" itemprop="url" ><span itemprop="name">Регионы</span></a></div>
+                    <div class="dropdown-item"><a data-scroll href="/#prices-block" itemprop="url" ><span itemprop="name">Цены</span></a></div>
+                    <div class="dropdown-item"><a data-scroll href="/#about-block" itemprop="url" ><span itemprop="name">О нас</span></a></div>
+                </div>
+            </div>
+            <div class="main-menu-item priem-dropdown-hover">ПРИЕМ КАТАЛИЗАТОРОВ
+                <div class="menu-dropdown priem-dropdown">
+                    <div class="dropdown-item"><a href="/catalizators/otechestvennye-katalizatory" itemprop="url" ><span itemprop="name">Отечественные катализаторы</span></a></div>
+                    <div class="dropdown-item"><a href="/catalizators/importnye-katalizatory" itemprop="url" ><span itemprop="name">Импортные катализаторы</span></a></div>
+                    <div class="dropdown-item"><a href="/catalizators/otechestvennye-metallicheskie-katalizatory" itemprop="url" ><span itemprop="name">Отечественные металлические катализаторы</span></a></div>
+                    <div class="dropdown-item"><a href="/catalizators/importnye-metallicheskie-katalizatory" itemprop="url" ><span itemprop="name">Импортные металлические катализаторы</span></a></div>
+                    <div class="dropdown-item"><a href="/catalizators/sazhevye-filtry" itemprop="url" ><span itemprop="name">Сажевые фильтры</span></a></div>
+            </div>
+            </div>
+              <div class="main-menu-item catalog-dropdown-hover"><a href="#">КАТАЛОГ</a>
+                <div class="menu-dropdown catalog-dropdown">
+                    <div class="dropdown-item"><a data-scroll href="/catalog/otechestvennyj/" itemprop="url" ><span itemprop="name">Отечественные катализаторы</span></a></div>
+                    <div class="dropdown-item"><a data-scroll href="/catalog/importnye/" itemprop="url" ><span itemprop="name">Импортные катализаторы</span></a></div>
+                </div>
+            </div>    
+              <div class="main-menu-item"><a data-scroll href="/conditions/" itemprop="url" ><span itemprop="name">УСЛОВИЯ ПРИЕМА</span></a></div>
+              <div class="main-menu-item"><a data-scroll href="/#working-methods-block" itemprop="url" ><span itemprop="name">ПОРЯДОК РАБОТ</span></a></div>
+              <div class="main-menu-item"><a data-scroll href="/#prices-block" itemprop="url" ><span itemprop="name">ЦЕНЫ</span></a></div>
+              <div class="main-menu-item"><a href="/contacts/" itemprop="url" ><span itemprop="name">КОНТАКТЫ</span></a></div>
+              <div class="main-menu-item" id="modal-button"><a href="/#form-container" itemprop="url" ><span itemprop="name">ЗАКАЗАТЬ ЗВОНОК</span></a></div>
+              <div class="main-menu-item"><a data-scroll href="/#partners-block" itemprop="url" ><span itemprop="name">ПАРТНЕРЫ</span></a></div>
+          </div>
+      </div>
+    </div>
+{% endblock %}
+    <!--========================================================
+                              CONTENT
+    =========================================================-->
+
+    <main>
+    {% block Content %}
+    {% endblock %}
+    {% block Modal %}
+        <!-- The Modal -->
+        <div id="modal-form" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="mainform-container">
+                <form method="post" action="/form-handler/" class="mainform">
+                    {% csrf_token %}
+                    <div class="form-group">
+                    <input type="hidden" id="post_url_modal" name="post_url_modal" value="{{ post_url }}">
+                    <div class="mainform-input-wr">
+                        <label for="name">Ваше имя:</label>
+                        <input  id="name" type="text" value="{{ form.name }}" name="name" class="mainform-control">
+                    </div>
+                    <div class="mainform-input-wr">
+                        <label for="phone_mail_modal">Телефон или email:</label>
+                        <input  id="phone_mail_modal" type="text" value="{{ form.phone_mail_modal }}" name="phone_mail_modal" class="mainform-control">
+                    </div>
+                    </div>
+                    <div class="form-group">
+                    <div class="mainform-input-wr">
+                        <label for="model">Марка|модель автомобиля:</label>
+                        <input  id="model" type="text" value="{{ form.model }}" name="model" class="mainform-control">
+                    </div>
+                    <div class="mainform-input-wr">
+                        <label for="year">Год выпуска:</label>
+                        <input  id="year" type="text" value="{{ form.year }}" name="year" class="mainform-control">
+                    </div>
+                    </div>
+                    <div class="form-group">
+                    <div class="mainform-input-wr">
+                        <label for="valcat">Объем|тип мотора (дизель|бензин):</label>
+                        <input id="valcat" value="{{ form.valcat}}" name="valcat" class="mainform-control">
+                    </div>
+                    <div class="mainform-input-wr">
+                        <label for="typecat">Тип катализатора (керамика|металл):</label>
+                        <input  id="typecat" type="text" value="{{ form.typecat }}" name="typecat" class="mainform-control">
+                    </div>
+                    </div>
+                    <div class="form-add-text">
+                        <a href="tel:+79308794602">Или позвонив по номеру 8(930)879-46-02</a>
+                    </div>
+                    <div class="form-recaptcha-wr">
+                      <div class="form-recaptcha form-group g-recaptcha" data-sitekey="6LdgNGsUAAAAAGd7vVWvBW7wrqfxfrmsWogDBMkB"></div>
+                    </div>
+                    <button class="mainform-button" type="submit" name="action">Узнать стоимость</button>
+                </form>
+            </div>
+            </div>
+        </div>
+        {% if messages %}
+            <div id="form-success" class="modal-success">
+                <!-- Modal content -->
+                <div class="success-modal-content">
+                    <div class="message-success-wr">
+                        {% for message in messages %}
+                            {{ message }}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <script>
+                var success = document.getElementById("form-success");
+                setTimeout(function () {
+                    success.style.display="none";
+                    }, 3000)
+            </script>
+        {% else %}
+        {% endif %}
+    {% endblock %}
+    </main>
+
+    <!--========================================================
+                            FOOTER
+    =========================================================-->
+    {% block Footer %}
+    <div class="base-container">
+      <footer itemscope itemtype="http://schema.org/WPFooter">
+            <div class="footer-container">
+                <form method="post" action="" class="footer-phone-order-wr">
+                {% csrf_token %}
+                <button class="footer-order-button" type="submit" name="action">Заказать звонок</button>
+                <input  id="footer_phone" placeholder="введите ваш номер" type="text" value="{{ form.footer_phone }}" name="footer_phone" class="footer-order-control">
+                </form>
+            </div>
+            <div class="footer-recaptcha-wr"><div class="g-recaptcha" data-sitekey="6LdgNGsUAAAAAGd7vVWvBW7wrqfxfrmsWogDBMkB"></div></div>
+            <div class="footer-rights-wr">
+                <meta itemprop="copyrightYear" content="2020">
+                <meta itemprop="copyrightHolder" content="ООО ВеКо">
+                <p>© 2020 ООО"ВеКо" | Все права защищены</p>
+            </div>
+      </footer>
+    </div>
+    {% endblock %}
+{% block JS %}
+<script src="{% static 'core/plugins/vendor/smooth-scroll.polyfills.min.js' %}"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+     var scroll = new SmoothScroll('a[href*="#"]');
+</script>
+{% endblock %}
+{% block ExtraJS %}{% endblock %}
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter46142247 = new Ya.Metrika({
+                    id:46142247,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/46142247" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-65303610-10"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-65303610-10');
+</script>
+<script src="{% static 'core/plugins/vendor/intersection-observer.js' %}"></script>
+<script src="{% static 'core/plugins/vendor/lazyload.min.js' %}"></script>
+<script>
+    var myLazyLoad = new LazyLoad();
+</script>
+<script>
+    function toggleMenu() {
+        var target=document.getElementById('mobile-menu-content');
+        var burger_icon=document.getElementById('burger-icon');
+        var close_icon=document.getElementById('close-icon');
+        var body_el=document.getElementById('body-element');
+        var style=getComputedStyle(target);
+        if (style.display === "flex"){
+            target.style.display="none";
+            close_icon.style.display="none";
+            burger_icon.style.display="block";
+            body_el.style.paddingTop = "60px";
+        }
+        else {
+            target.style.display="flex";
+            close_icon.style.display="block";
+            burger_icon.style.display="none";
+            body_el.style.paddingTop = "450px";
+        }
+    }
+    var modal = document.getElementById('modal-form');
+    var btn = document.getElementById("modal-button");
+    var span = document.getElementsByClassName("close")[0];
+    btn.onclick = function() {
+        modal.style.display = "block";
+    };
+    span.onclick = function() {
+        modal.style.display = "none";
+    };
+    window.onclick = function(event) {
+        if (event.target === modal) {
+        modal.style.display = "none";
+     }
+    };
+    function showMobHidden(tar, act_p, act_m) {
+        var target = document.getElementById(tar);
+        var actor_plus = document.getElementById(act_p);
+        var actor_minus = document.getElementById(act_m);
+        if(target.style.display === "none"){
+            target.style.display = "block";
+            actor_plus.style.display = "none";
+            actor_minus.style.display = "block";
+        }
+        else {
+            target.style.display = "none";
+            actor_plus.style.display = "block";
+            actor_minus.style.display = "none";
+        }
+    }
+</script>
+<script>
+    var max_col_height = 0;
+    var columns = document.getElementsByClassName("equalheight");
+    console.log(columns);
+    for (var i = columns.length - 1; i >= 0; i--) {
+        console.log(columns[i].style)
+	if( columns[i].offsetHeight > max_col_height ) {
+	    max_col_height = columns[i].offsetHeight;
+	}
+}
+    for (var i = columns.length - 1; i >= 0; i--) {
+	columns[i].style.height = (max_col_height).toString()+'px';
+}
+
+</script>
+</body>
+</html>

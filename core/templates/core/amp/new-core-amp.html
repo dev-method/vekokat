@@ -1,0 +1,281 @@
+{% extends 'core/amp/new-base-amp.html' %}
+{% load static %}
+{% block AMP-Cannonical-Link %}
+    <link rel="canonical" href="https://www.vekokat.ru" />
+{% endblock %}
+{% block AMP-Scripts %}
+<script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+<script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+<script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+{% endblock %}
+{% block AMP-Content %}
+    <div class="base-container">
+
+      <!-- MAIN PAGE SLIDER -->
+
+      <div class="main-page-slider" id="main-page-slider">
+          <div class="main-page-slider-item">
+              <amp-carousel width="1920"
+                 height="500"
+                 layout="responsive"
+                 type="slides"
+                 autoplay
+                 delay="2000">
+                 {% for slide in slides %}
+                 <amp-img src="{{ slide.slide.url }}"
+                   height="{{ slide.slide.height}}" width="{{ slide.slide.width}}"
+                   alt=""></amp-img>
+                 {% endfor %}
+              </amp-carousel>
+          </div>
+      </div>
+     <div class="catol-title">
+          <h2>ПРИЕМ АВТОМОБИЛЬНЫХ КАТАЛИЗАТОРОВ</h2>
+      </div>
+    <div class="content-container">
+      <div class="after-title-text">
+             {% for text in adv_text %}
+             {{ text.amp_text|safe }}
+             {% endfor %}
+      </div>
+    </div>
+      <!-- WORKING METHODS BLOCK -->
+      {% include 'core/amp/amp-working-methods.html' %}
+
+      <!-- MOBILE LABORATORY BLOCK -->
+      <div class="laboratory-mapimage-container" id="laboratory-block">
+          <div class="laboratory-title catol-title">
+              <h2>МОБИЛЬНАЯ ЛАБОРАТОРИЯ</h2>
+          </div>
+          <div class="content-container">
+              <div class="laboratory-sub-title">
+                 <h3>НЕОСПОРИМОЕ УДОБСТВО ДЛЯ КЛИЕНТОВ</h3>
+              </div>
+              <div class="laboratory-sub-title-lv2">
+                  <h3>Больше не нужно лично посещать приемный пункт и отправлять посылки</h3>
+              </div>
+              <div class="laboratory-items-container">
+                  {% for labor in laboratories %}
+                  <div class="laboratory-item">
+                      <div class="laboratory-item-title">
+                          <h3>{{ labor.title }}</h3>
+                      </div>
+                      <div class="laboratory-item-icon">
+                          {% if labor.icon %}
+                          {{ labor.icon }}
+                          {% else %}
+                              <amp-img height="{{ labor.icon_image.height}}" width="{{ labor.icon_image.width}}" src="{{ labor.icon_image.url }}"></amp-img>
+                          {% endif %}
+                      </div>
+                      <div class="laboratory-item-text">
+                          {{ labor.text|safe }}
+                      </div>
+                  </div>
+                  {% endfor %}
+              </div>
+              <div class="laboratory-post-text">
+                  <p>Возможность выезда по Вашему адресу.</p>
+                  <p><span class="blue-text">График и маршрут мобильной лаборатории уточняйте по телефону.</span></p>
+              </div>
+          </div>
+          <div class="laboratory-carimage-wr">
+              <amp-img height="148" width="270" src="{% static 'core/images/newdesign/car.png' %}"></amp-img>
+          </div>
+          </div>
+
+       <!-- REGIONS BLOCK -->
+
+        <div class="regions-map-image" id="regions-block">
+           <div class="regions-back-image">
+              <div class="regions-title catol-title">
+                  <h2>РЕГИОНЫ</h2>
+              </div>
+              <div class="content-container">
+                  <div class="regions-text">
+                      <p>Свой материал Вы можете отправить почтой России или любой транспортной компанией. Сообщите нам о своем желании отправить посылку любым удобным для Вас способом: смс, whatsapp, email, телефон. Наши специалисты свяжутся с Вами для дальнейшей консультации.</p>
+                  </div>
+                  <div class="regions-subtitle">
+                      <h3>Порядок работы с регионами</h3>
+                  </div>
+                  <div class="regions-items-container">
+                      {% for region in regions %}
+                      <div class="regions-item">
+                          <div class="regions-item-icon">
+                              {% if region.icon %}
+                              {{ region.icon }}
+                              {% else %}
+                                  <amp-img height="{{ region.icon_image.height}}" width="{{ region.icon_image.width}}" src="{{ region.icon_image.url }}"></amp-img>
+                              {% endif %}
+                          </div>
+                          <div class="regions-item-text">
+                              {{ region.text|safe }}
+                          </div>
+                      </div>
+                      {% endfor %}
+                  </div>
+              </div>
+           </div>
+        </div>
+
+        <!-- PRICES BLOCK -->
+     {% include 'core/amp/amp-priceblock.html' %}
+
+       <!-- ADVANTAGES BLOCK -->
+      <div class="advantages-title catol-title" id="advantages-block">
+          <h2>ПОЧЕМУ ВЫГОДНО СДАТЬ КАТАЛИЗАТОР У НАС</h2>
+      </div>
+      <div class="content-container">
+         <div class="advantages-list-container">
+             {% for advantage in advantages %}
+             <div class="advantages-item">
+                 <div class="advantages-item-icon" id="adv-item-icon-{{ advantage.group }}">
+                     {% if advantage.icon %}
+                     {{ advantage.icon }}
+                     {% else %}
+                         <amp-img height="{{ advantage.icon_image.height}}" width="{{ advantage.icon_image.width}}" src="{{ advantage.icon_image.url }}"></amp-img>
+                     {% endif %}
+                 </div>
+                 <div class="advantages-item-text" id="adv-item-text-{{ advantage.group }}">
+                     {{ advantage.text|safe }}
+                 </div>
+             </div>
+             {% endfor %}
+         </div>
+      </div>
+          <!-- PARTNERS BLOCK -->
+        <div class="partners-title catol-title" id="partners-block">
+            <h2>НАШИ ПАРТНЕРЫ:</h2>
+        </div>
+        <div class="content-container">
+            <div class="partners-text-wr">
+                <div class="partners-text">
+                    В данных сервисах Вы получите квалифицированный ремонт и обслуживание Вашего автомобиля, за приемлемую стоимость.
+                </div>
+            </div>
+            <div class="partners-recomended-text">
+                МЫ РЕКОМЕНДУЕМ:
+            </div>
+            <div class="partners-items-container">
+                {% for partner in partners %}
+                    {% if partner.image_full %}
+                        <div class="partner-item-full-wr">
+                        <div class="partner-logo-full-wr">
+                            <amp-img layout="responsive" height="{{ partner.image.height}}" width="{{ partner.image.width}}" src="{{ partner.image.url }}"></amp-img>
+                        </div>
+                        <div class="partner-full-wr">
+                        <div class="partner-left-wr">
+                            <div class="partner-city">
+                                {{ partner.city }}
+                            </div>
+                            <div class="partner-link">
+                                <a href="{{ partner.link }}">{{ partner.link }}</a>
+                            </div>
+                        </div>
+                        <div class="partner-right-wr">
+                            <div class="partner-item-text-wr">
+                                {{ partner.text|safe }}
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    {% else %}
+                     <div class="partner-item-wr">
+                        <div class="partner-left-wr">
+                            <div class="partner-city">
+                                {{ partner.city }}
+                            </div>
+                            <div class="partner-logo-wr">
+                                <amp-img layout="responsive" height="{{ partner.image.height}}" width="{{ partner.image.width}}" src="{{ partner.image.url }}"></amp-img>
+                            </div>
+                            <div class="partner-link">
+                                <a href="{{ partner.link }}">{{ partner.link }}</a>
+                            </div>
+                        </div>
+                        <div class="partner-right-wr">
+                            <div class="partner-item-text-wr">
+                                {{ partner.text|safe }}
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+        </div>
+
+        <!-- MAIN FORM BLOCK -->
+        <div class="mainform-title catol-title" id="form-container">
+            <h2>Узнайте приблизительную стоимость вашего католизатора</h2>
+        </div>
+        <div class="content-container">
+            {% include 'forms/amp-form.html' %}
+        </div>
+
+        <!-- ABOUT BLOCK -->
+        <div class="about-title catol-title" id="about-block">
+            <h2>О НАС</h2>
+        </div>
+        <div class="content-container">
+            <div class=about-container">
+                <div class="about-text-container" id="about-text">
+                    {% for text in about_text %}
+                    {{ text.text_amp|safe }}
+                    {% endfor %}
+                </div>
+                <div class="read-more-container">
+                    <div class="read-more" id="read-more" role="button" tabindex="0" on="tap:about-text.toggleClass(class='about-text-container-full')">СКРЫТЬ/ПОКАЗАТЬ ТЕКСТ</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTACTS BLOCK -->
+        <div class="contacts-title catol-title" id="map-container">
+            <h2>КОНТАКТЫ</h2>
+        </div>
+        <div class="content-container">
+            <div class="contacts-map-container">
+            <amp-iframe width="400" height="300"
+                 sandbox="allow-scripts allow-same-origin"
+                 layout="responsive"
+                 frameborder="0"
+                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2244.009550070132!2d38.44844931614856!3d55.775705980559465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x414adc6af6bf1121%3A0xd971550213fb23fc!2z0YPQuy4g0J_QuNC-0L3QtdGA0YHQutCw0Y8sIDIyLCDQrdC70LXQutGC0YDQvtGB0YLQsNC70YwsINCc0L7RgdC60L7QstGB0LrQsNGPINC-0LHQuy4sIDE0NDAwNw!5e0!3m2!1sru!2sru!4v1557688763061!5m2!1sru!2sru">
+            </amp-iframe>
+            <div class="contacts-block-container">
+                <div class="contacts-block">
+                   <div class="contacts-block-adress-wr">
+                       <div class="contacts-block-adress-icon">
+                           <i class="fas fa-map-marked-alt"></i>
+                       </div>
+                       <div class="contacts-block-adress-text">
+                           <p>МО, Электросталь</p>
+                           <p>ул. Пионерская д.22</p>
+                       </div>
+                   </div>
+                   <div class="contacts-block-phones-wr">
+                       <div class="contacts-block-phones-icon">
+                           <amp-img width="40" height="40" src="{% static 'core/images/newdesign/phon-icon-100.png' %}"></amp-img>
+                       </div>
+                       <div class="contacts-block-phones-text">
+                           <p>+7(925)553-35-52</p>
+                           <p>+7(926)866-86-89</p>
+                       </div>
+                   </div>
+                   <div class="contacts-block-mail-wr">
+                       <div class="contacts-block-mail-icon">
+                           <i class="fas fa-envelope-open-text"></i>
+                       </div>
+                       <div class="contacts-block-mail-text">
+                           <p>vekomet@gmail.com</p>
+                       </div>
+                   </div>
+                   <div class="contacts-block-logo-wr">
+                       <a href="/"><amp-img width="100" height="86" src="{% static 'core/images/newdesign/vekokat-new-logo-100.png' %}"></amp-img></a>
+                   </div>
+                </div>
+            </div>
+            </div>
+        </div>
+      </div>
+{% endblock %}

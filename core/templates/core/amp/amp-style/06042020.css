@@ -1,0 +1,23 @@
+amp-accordion {
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+#sidebar li a {
+    color: #000000;
+    font-weight: bold;
+    text-decoration: none;
+}
+.conditions-gallery-item amp-img {
+    width: auto;
+}
+
+@media (min-width: 576px) {
+
+}
+@media (min-width: 768px) {
+
+}
+@media (min-width: 992px) {
+
+}

@@ -1,0 +1,32 @@
+{% extends "core/yandex-turbo/new-base-turbo.rss" %}
+{% load static %}
+        {% block Meta %}
+        {% for s in seo %}
+        <title>{{s.title}}</title>
+        <description>{{s.description}}</description>
+        {% endfor %}
+        {% endblock %}
+        {% block Link %}
+        <link>https://vekokat.ru/conditions/</link>
+        {% endblock %}
+        {% block Title %}
+        <title>УСЛОВИЯ И ПОРЯДОК ПРИЕМА КАТАЛИЗАТОРОВ</title>
+        {% endblock %}
+                  {% block Content %}
+                  {% for condition in conditions %}
+                  <figure>
+                     <img src="{{ condition.image.url }}" />
+                   </figure>
+                   <p>{{ condition.text_part1_amp|safe }}</p>
+                   <p>{{ condition.text_part2_amp|safe }}</p>
+                    <h2>ПОРЯДОК РАБОТ ПРИ ПРИЕМЕ КАТАЛИЗАТОРОВ</h2>
+                  {% for method in methods %}
+                  <figure>
+                     <img src="{{ method.image.url }}" />
+                     <figcaption><h4>{{ method.number }}{{ method.text }}</h4>
+                     </figcaption>
+                   </figure>
+                  {% endfor %}
+                  {% include "forms/rss-form.rss" %}
+                  {% endfor %}
+                  {% endblock %}

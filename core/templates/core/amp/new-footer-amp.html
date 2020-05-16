@@ -1,0 +1,15 @@
+{% load static %}
+<div class="base-container">
+      <footer>
+            <div class="footer-container">
+                <form method="post" action-xhr="/amp/" class="footer-phone-order-wr">
+                {% csrf_token %}
+                <button class="footer-order-button" type="submit" name="action">Заказать звонок</button>
+                <input  id="footer_phone" placeholder="введите ваш номер" type="text" value="{{ form.footer_phone }}" name="footer_phone" class="footer-order-control">
+                </form>
+            </div>
+            <div class="footer-rights-wr">
+                <p>© 2019 ООО"ВеКо" | Все права защищены</p>
+            </div>
+      </footer>
+</div>

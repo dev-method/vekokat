@@ -1,0 +1,43 @@
+{% extends 'core/amp/new-base-amp.html' %}
+{% load staticfiles %}
+{% block Meta %}
+    {% for s in seo %}
+        <title>{{ s.title }}</title>
+        <meta name="keywords" content="{{ s.keywords }}"/>
+        <meta name="description" content="{{ s.description }}"/>
+    {% endfor %}
+{% endblock %}
+{% block AMP-Scripts %}
+<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+<script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+<script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+{% endblock %}
+{% block AMP-Cannonical-Link %}
+    <link rel="canonical" href="https://www.vekokat.ru/amp/conditions/" />
+{% endblock %}
+{% block AMP-Content %}
+<div class="content-container conditions">
+    {% for condition in conditions %}
+        <div class="conditions-banner" style="background: url({{ condition.image.url }}); background-size: cover;">
+        </div>
+        <div class="conditions-title">
+            <h1>ТРЕБОВАНИЯ И УСЛОВИЯ ПРИЕМА</h1>
+        </div>
+        <div class="conditions-text">
+            {{ condition.text_part1_amp|safe }}
+        </div>
+        <div class="conditions-text">
+            {{ condition.text_part2_amp|safe }}
+        </div>
+    {% endfor %}
+    </div>
+    <!-- WORKING METHODS BLOCK -->
+    {% include 'core/amp/amp-working-methods.html' %}
+      <!-- MAIN FORM BLOCK -->
+        <div class="mainform-title catol-title" id="form-container">
+            <h2>Узнайте приблизительную стоимость вашего католизатора</h2>
+        </div>
+        <div class="content-container conditions-form">
+        {% include 'forms/amp-form.html' %}
+        </div>
+{% endblock %}

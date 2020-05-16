@@ -1,0 +1,134 @@
+{% extends "core/base-newdesign.html" %}
+{% load staticfiles %}
+{% block Meta %}
+    <title>{{ city.seotitle }}</title>
+    <meta name="keywords" content="{{ city.seokeywords }}"/>
+    <meta name="description" content="{{ city.seodescript }}"/>
+{% endblock %}
+{% block OpenGraph %}
+    <meta property="og:title" content="{{ city.seotitle }}"/>
+	<meta property="og:description" content="{{ city.seodescript }}"/>
+	<meta property="og:image" content="https://vekokat.ru{{ city.image_1_768.url }}"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:url" content= "https://vekokat.ru/priem-katalizatorov/{{ city.slug }}" />
+{% endblock %}
+{% block LinkAmp %}
+     <link rel="amphtml" href="https://vekokat.ru/amp/priem-katalizatorov/{{ city.slug }}">
+{% endblock %}
+{% block ExstraCSS %}
+    <link href="{% static 'core/css/dev/16042020.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'core/plugins/vendor/tiny-slider.css' %}">
+{% endblock %}
+<!-- CITIES-PAGE -->
+
+{% block Content %}
+<style>
+    #width-modificator {
+        justify-content: space-around;
+    }
+@media (min-width: 576px) {
+    #width-modificator {
+        justify-content: space-around;
+    }
+}
+@media (min-width: 768px) {
+   #width-modificator {
+        justify-content: space-between;
+    }
+}
+@media (min-width: 992px) {
+    #width-modificator {
+        justify-content: space-between;
+    }
+}
+</style>
+<div itemscope itemtype="http://schema.org/ItemPage">
+<div class="base-container" id="cities-container" itemprop="mainEntity" itemscope itemtype="http://schema.org/Article">
+    <div class="city-gallery-wr" id="city-gallery">
+        {% if city.image_1 %}
+        <div class="city-gallery-item">
+            <picture>
+                <source type="image/jpeg" media="(max-width: 576px)" srcset="{{ city.image_1_576.url }}" />
+                <source type="image/jpeg" media="(max-width: 768px)" srcset="{{ city.image_1_768.url }}" />
+                <img itemprop="image" class="customresponsive" alt="{{ city.city_name }}" src="{{ city.image_1.url }}">
+              </picture>
+        </div>
+        {% else %}
+        {% endif %}
+        {% if city.image_2 %}
+        <div class="city-gallery-item">
+            <picture>
+                <source type="image/jpeg" media="(max-width: 576px)" srcset="{{ city.image_2_576.url }}" />
+                <source type="image/jpeg" media="(max-width: 768px)" srcset="{{ city.image_2_768.url }}" />
+                <img class="customresponsive" alt="{{ city.city_name }}" src="{{ city.image_2.url }}">
+              </picture>
+        </div>
+        {% else %}
+        {% endif %}
+        {% if city.image_3 %}
+        <div class="city-gallery-item">
+            <picture>
+                <source type="image/jpeg" media="(max-width: 576px)" srcset="{{ city.image_3_576.url }}" />
+                <source type="image/jpeg" media="(max-width: 768px)" srcset="{{ city.image_3_768.url }}" />
+                <img class="customresponsive" alt="{{ city.city_name }}" src="{{ city.image_3.url }}">
+              </picture>
+        </div>
+        {% else %}
+        {% endif %}
+    </div>
+    <div class="catol-title">
+            <h2 itemprop="headline name">{{ city.seotitle }}</h2>
+    </div>
+    <div class="content-container conditions-text" itemprop="articleBody">
+        <p>Любой современный город, такой как, к примеру, город {{ city.city_name }} - это огромное количество людей, живущих и постоянно перемещающихся по своим важным делам. Многие из них используют для поездок собственные автомобили. Вот и в городе {{ city.city_name }} на каждую 1000 человек в среднем приходится 350-400 авто. В современных реалиях любая копейка, как говорится, не бывает лишней. А ведь большинство автомобилистов и не подозревают, что буквально рядом с ними есть возможность весьма неплохо заработать.</p>
+        <p>Мы поговорим о приеме катализаторов в городе {{ city.city_name }}. Каталитический нейтрализатор , согласно нормам Евро, является  обязательной частью любого автомобиля. Он отвечает за преобразование вредных выбросов двигателя в относительно безопасные газы и воду. Автомобильный катализатор внутри имеет структуру, похожую на соты, покрытые редкими металлами-катализаторами, которые являются активаторами реакции преобразования выхлопов авто. Эти редкие металлы, такие как палладий, родий и платина и являются основной ценностью внутренностей катализатора. Вы можете сдать катализатор в городе {{ city.city_name }} в пункт приема, где есть все необходимое оборудование и персонал для получения ценных металлов. В качестве компенсации вы получаете приличное материальное вознаграждение.</p>
+        <p>Стоимость приема отработанных катализаторов в городе {{ city.city_name }} зависит от нескольких факторов. Во первых, это страна-производитель. Как правило, импортные катализаторы отличаются более высоким содержанием редких металлов по сравнению с катализаторами отечественного производства. Поэтому сдать импортные катализаторы будет немного выгоднее. В любом случае, сдать катализатор и получить за него деньги — это лучше чем просто оставить его где-то в автосервисе или выкинуть на свалку.</p>
+        <p>В зависимости от материала производства, автомобильные катализаторы бывают керамическими и металлическими. Первые дешевле, но более хрупки и чувствительны к механическим повреждениям, вторые более надежны и долговечны. Различается и стоимость приема катализаторов.Помимо всего перечисленного, для владельцев авто с дизельными двигателями, есть возможность сдать сажевые фильтры по весьма привлекательной цене.</p>
+        <p>Наша организация поможет вам сдать автомобильный катализатор в городе {{ city.city_name }}. Мы уже давно работаем на рынке переработки вторсырья, у нас опытный персонал и хорошие отзывы клиентов о нашей деятельности. Честный прием, удобные способы оплаты, наличие мобильной лаборатории для выезда к клиенту в любое место — наши главные отличительные особенности. Ждем ваших звонков и заявок.</p>
+    </div>
+    <!-- PRICES BLOCK -->
+    {% if debug_flag %}
+        {% include 'core/dev/prices-block.html' %}
+    {% else %}
+        {% include 'core/prod/prices-block.html' %}
+    {% endif %}
+
+    <!-- WORKING METHODS BLOCK -->
+    {% if debug_flag %}
+        {% include 'core/dev/working-methods.html' %}
+    {% else %}
+        {% include 'core/prod/working-methods.html' %}
+    {% endif %}
+
+    <!-- MAIN FORM BLOCK -->
+    <div class="mainform-title catol-title" id="form-container">
+        <h2>Узнайте приблизительную стоимость вашего катализатора, заполнив форму</h2>
+    </div>
+    <div class="content-container cities-form">
+        {% if debug_flag %}
+            {% include 'forms/dev/main-form.html' %}
+        {% else %}
+            {% include 'forms/prod/main-form.html' %}
+        {% endif %}
+    </div>
+
+</div>
+</div>
+{% endblock %}
+
+{% block ExtraJS %}
+    <script src="{% static 'core/plugins/vendor/tiny-slider.js' %}"></script>
+<script>
+  var slider = tns({
+    container: '#city-gallery',
+    mode: "gallery",
+    controls: false,
+    autoplayButton: false,
+    items: 1,
+    mouseDrag: true,
+    slideBy: 'page',
+    speed: 400,
+    autoplay: true
+  });
+</script>
+{% endblock %}

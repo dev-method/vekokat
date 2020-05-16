@@ -1,0 +1,69 @@
+<form data-type="dynamic-form" end_point="https://vekokat.ru/rss/form-handler/">
+    <div type="input-block">
+       <span
+               type="input"
+               value="{{ form.name }}"
+               name="name"
+               label="Ваше имя"
+               input-type="text"
+               placeholder="Имя"
+               required="false">
+
+       </span>
+       <span
+               type="input"
+               value="{{ form.phone_mail }}"
+               name="phone_mail"
+               label="Телефон или email:"
+               input-type="text"
+               placeholder="Телефон или email:"
+               required="true">
+
+       </span>
+       <span
+               type="input"
+               value="{{ form.model }}"
+               name="model"
+               label="Марка|модель автомобиля:"
+               input-type="text"
+               placeholder="Марка|модель автомобиля"
+               required="false">
+
+       </span>
+       <span
+               type="input"
+               value="{{ form.year }}"
+               name="year"
+               label="Год выпуска:"
+               input-type="text"
+               placeholder="Год выпуска"
+               required="false">
+
+       </span>
+       <span
+               type="input"
+               value="{{ form.valcat}}"
+               name="valcat"
+               label="Объем|тип мотора (дизель|бензин):"
+               input-type="text"
+               placeholder="Объем|тип мотора"
+               required="false">
+
+       </span>
+       <span
+               type="input"
+               value="{{ form.typecat }}"
+               name="typecat"
+               label="Тип катализатора (керамика|металл):"
+               input-type="text"
+               placeholder="Тип катализатора"
+               required="false">
+
+       </span>
+       <button type="submit" text="ОТПРАВИТЬ СООБЩЕНИЕ"></button>
+    </div>
+    <div type="result-block">
+        <span type="text" field="message"></span>
+        <span type="link" field="link"></span>
+    </div>
+</form>

@@ -1,0 +1,41 @@
+{% extends 'core/amp/new-base-amp.html' %}
+{% load static %}
+{% block Meta %}
+        <title>{{ cat_type.seotitle }}</title>
+        <meta name="keywords" content="{{ cat_type.seokeywords }}"/>
+        <meta name="description" content="{{ cat_type.seodescript }}"/>
+{% endblock %}
+{% block AMP-Cannonical-Link %}
+    <link rel="canonical" href="https://www.vekokat.ru/catalizators/{{ cat_type.slug }}/" />
+{% endblock %}
+{% block AMP-Scripts %}
+<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+<script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+<script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+{% endblock %}
+{% block AMP-Content %}
+<!-- CATALOG-TYPE-PAGE -->
+
+    <div class="content-container catalyzator-type">
+        <div class="cat-type-gallery">
+            {% for img in imgs %}
+                <div class="cat-type-gal-item" style="background: url({{ img.img.url }}); background-size: cover;">
+                </div>
+            {% endfor %}
+        </div>
+    <div class="catalyzator-type-title">
+        <h1>{{ cat_type.title }}</h1>
+    </div>
+    <div class="catalyzator-type-text">
+        {{ cat_type.amp_text|safe }}
+    </div>
+    {% include 'core/amp/amp-priceblock.html' %}
+    <!-- MAIN FORM BLOCK -->
+        <div class="mainform-title catol-title" id="form-container">
+            <h2>Узнайте приблизительную стоимость вашего католизатора</h2>
+        </div>
+        <div class="content-container catalizator-type-form">
+            {% include 'forms/amp-form.html' %}
+        </div>
+    </div>
+{% endblock %}

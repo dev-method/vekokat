@@ -1,0 +1,21 @@
+{
+    "dir": "ltr",
+    "lang": "ru",
+    "name": "Vekokat",
+    "scope": "/",
+    "display": "browser",
+    "start_url": "https://vekokat.ru/",
+    "short_name": "vekokat",
+    "theme_color": "transparent",
+    "description": "Покупаем автомобильные католизаторы по высокой цене",
+    "orientation": "any",
+    "background_color": "transparent",
+    "related_applications": [],
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "/images/static/core/images/icon.png",
+            "sizes": "512x512"
+        }
+    ]
+}
